@@ -1,0 +1,2004 @@
+{
+    "unique_key": "0846b15c-b2eb-4dd3-a84a-c08df197b4a7",
+    "sorted_schedule": [
+        {
+            "schedule": [
+                {
+                    "section": "CSCI-160-001",
+                    "timeslot": "M W F - 11:15AM",
+                    "minCredit": "4",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "CSCI-200-001",
+                    "timeslot": "M W F - 12:20PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "CSCI-210-001",
+                    "timeslot": "M W F - 2:00PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "CSCI-210-001",
+                    "timeslot": "Tu Th - 2:00PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-150-001",
+                    "timeslot": "M W F - 12:30PM",
+                    "minCredit": "4",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-150-001",
+                    "timeslot": "Tu Th - 12:30PM",
+                    "minCredit": "4",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-250-001",
+                    "timeslot": "M W F - 3:35PM",
+                    "minCredit": "4",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-320-001",
+                    "timeslot": "M W F - 2:00PM",
+                    "minCredit": "4",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-320-001",
+                    "timeslot": "Tu Th - 2:00PM",
+                    "minCredit": "4",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-365-001",
+                    "timeslot": "M W F - 8:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-365-001",
+                    "timeslot": "Tu Th - 8:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-370-001",
+                    "timeslot": "M W F - 9:30AM",
+                    "minCredit": "4",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-370-001",
+                    "timeslot": "Tu Th - 9:30AM",
+                    "minCredit": "4",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-489-001",
+                    "timeslot": "M W F - 9:30AM",
+                    "minCredit": "3",
+                    "faculty1": "",
+                    "room": "ARRG",
+                    "bldg": "ARRG",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-489-001",
+                    "timeslot": "Tu Th - 9:30AM",
+                    "minCredit": "3",
+                    "faculty1": "",
+                    "room": "ARRG",
+                    "bldg": "ARRG",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-499-001",
+                    "timeslot": "M W F - 1:25PM",
+                    "minCredit": "3",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-112-001",
+                    "timeslot": "M W F - 9:05AM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "secCap": "30"
+                },
+                {
+                    "section": "MATH-113-001",
+                    "timeslot": "M W F - 3:35PM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "secCap": "30"
+                },
+                {
+                    "section": "MATH-130-001",
+                    "timeslot": "M W F - 9:05AM",
+                    "minCredit": "3",
+                    "faculty1": "TBD",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-130-002",
+                    "timeslot": "M W F - 2:30PM",
+                    "minCredit": "3",
+                    "faculty1": "TBD",
+                    "room": "",
+                    "bldg": "",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-155-001",
+                    "timeslot": "M W F - 10:10AM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-221-001",
+                    "timeslot": "M W F - 12:20PM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-230-001",
+                    "timeslot": "M W F - 11:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-230-001",
+                    "timeslot": "Tu Th - 11:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-255-001",
+                    "timeslot": "M W F - 10:10AM",
+                    "minCredit": "3",
+                    "faculty1": "Lichty, Joshua J",
+                    "room": "416",
+                    "bldg": "MRC",
+                    "secCap": "30"
+                },
+                {
+                    "section": "MATH-270-001",
+                    "timeslot": "M W F - 8:00AM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "secCap": "30"
+                },
+                {
+                    "section": "MATH-270-001",
+                    "timeslot": "Tu Th - 8:00AM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "secCap": "30"
+                },
+                {
+                    "section": "MATH-344-001",
+                    "timeslot": "M W F - 9:30AM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "secCap": "16"
+                },
+                {
+                    "section": "MATH-344-001",
+                    "timeslot": "Tu Th - 9:30AM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "secCap": "16"
+                },
+                {
+                    "section": "MATH-365-001",
+                    "timeslot": "M W F - 10:10AM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "PHYS-102-001",
+                    "timeslot": "M W F - 8:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Narayanan, Madhavan",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "secCap": "18"
+                },
+                {
+                    "section": "PHYS-251-001",
+                    "timeslot": "M W F - 3:35PM",
+                    "minCredit": "3",
+                    "faculty1": "Gerig, Anthony L",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                },
+                {
+                    "section": "PHYS-261-001",
+                    "timeslot": "M W F - 9:05AM",
+                    "minCredit": "3",
+                    "faculty1": "Anglehart, Joseph",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "secCap": "20"
+                },
+                {
+                    "section": "MATH-091-001",
+                    "timeslot": "M W F - 3:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-091-001",
+                    "timeslot": "Tu Th - 3:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-499-001",
+                    "timeslot": "M W F - 3:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-499-001",
+                    "timeslot": "Tu Th - 3:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                },
+                {
+                    "section": "CSCI-499-001",
+                    "timeslot": "M W F - 12:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                },
+                {
+                    "section": "CSCI-499-001",
+                    "timeslot": "Tu Th - 12:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                }
+            ],
+            "score": 47232,
+            "algorithm": "PuLP",
+            "slot_differences": 0,
+            "calendar_events": [
+                {
+                    "section_name": "CSCI-160-001",
+                    "start": "2024-03-18T11:15:00",
+                    "end": "2024-03-18T12:15:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-160-001",
+                    "start": "2024-03-20T11:15:00",
+                    "end": "2024-03-20T12:15:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-160-001",
+                    "start": "2024-03-22T11:15:00",
+                    "end": "2024-03-22T12:15:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-200-001",
+                    "start": "2024-03-18T12:20:00",
+                    "end": "2024-03-18T13:20:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-200-001",
+                    "start": "2024-03-20T12:20:00",
+                    "end": "2024-03-20T13:20:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-200-001",
+                    "start": "2024-03-22T12:20:00",
+                    "end": "2024-03-22T13:20:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-210-001",
+                    "start": "2024-03-19T14:00:00",
+                    "end": "2024-03-19T15:30:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-210-001",
+                    "start": "2024-03-21T14:00:00",
+                    "end": "2024-03-21T15:30:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "ENGR-150-001",
+                    "start": "2024-03-19T12:30:00",
+                    "end": "2024-03-19T14:00:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-150-001",
+                    "start": "2024-03-21T12:30:00",
+                    "end": "2024-03-21T14:00:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-250-001",
+                    "start": "2024-03-18T15:35:00",
+                    "end": "2024-03-18T16:35:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-250-001",
+                    "start": "2024-03-20T15:35:00",
+                    "end": "2024-03-20T16:35:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-250-001",
+                    "start": "2024-03-22T15:35:00",
+                    "end": "2024-03-22T16:35:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-320-001",
+                    "start": "2024-03-19T14:00:00",
+                    "end": "2024-03-19T15:30:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-320-001",
+                    "start": "2024-03-21T14:00:00",
+                    "end": "2024-03-21T15:30:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-365-001",
+                    "start": "2024-03-19T08:00:00",
+                    "end": "2024-03-19T09:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-365-001",
+                    "start": "2024-03-21T08:00:00",
+                    "end": "2024-03-21T09:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-370-001",
+                    "start": "2024-03-19T09:30:00",
+                    "end": "2024-03-19T11:00:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-370-001",
+                    "start": "2024-03-21T09:30:00",
+                    "end": "2024-03-21T11:00:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-499-001",
+                    "start": "2024-03-18T13:25:00",
+                    "end": "2024-03-18T14:25:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-499-001",
+                    "start": "2024-03-20T13:25:00",
+                    "end": "2024-03-20T14:25:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-499-001",
+                    "start": "2024-03-22T13:25:00",
+                    "end": "2024-03-22T14:25:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "MATH-112-001",
+                    "start": "2024-03-18T09:05:00",
+                    "end": "2024-03-18T10:05:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-112-001",
+                    "start": "2024-03-20T09:05:00",
+                    "end": "2024-03-20T10:05:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-112-001",
+                    "start": "2024-03-22T09:05:00",
+                    "end": "2024-03-22T10:05:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-113-001",
+                    "start": "2024-03-18T15:35:00",
+                    "end": "2024-03-18T16:35:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-113-001",
+                    "start": "2024-03-20T15:35:00",
+                    "end": "2024-03-20T16:35:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-113-001",
+                    "start": "2024-03-22T15:35:00",
+                    "end": "2024-03-22T16:35:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-130-001",
+                    "start": "2024-03-18T09:05:00",
+                    "end": "2024-03-18T10:05:00",
+                    "faculty1": "TBD",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-130-001",
+                    "start": "2024-03-20T09:05:00",
+                    "end": "2024-03-20T10:05:00",
+                    "faculty1": "TBD",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-130-001",
+                    "start": "2024-03-22T09:05:00",
+                    "end": "2024-03-22T10:05:00",
+                    "faculty1": "TBD",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-155-001",
+                    "start": "2024-03-18T10:10:00",
+                    "end": "2024-03-18T11:10:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-155-001",
+                    "start": "2024-03-20T10:10:00",
+                    "end": "2024-03-20T11:10:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-155-001",
+                    "start": "2024-03-22T10:10:00",
+                    "end": "2024-03-22T11:10:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-221-001",
+                    "start": "2024-03-18T12:20:00",
+                    "end": "2024-03-18T13:20:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-221-001",
+                    "start": "2024-03-20T12:20:00",
+                    "end": "2024-03-20T13:20:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-221-001",
+                    "start": "2024-03-22T12:20:00",
+                    "end": "2024-03-22T13:20:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-230-001",
+                    "start": "2024-03-19T11:00:00",
+                    "end": "2024-03-19T12:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-230-001",
+                    "start": "2024-03-21T11:00:00",
+                    "end": "2024-03-21T12:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-255-001",
+                    "start": "2024-03-18T10:10:00",
+                    "end": "2024-03-18T11:10:00",
+                    "faculty1": "Lichty, Joshua J",
+                    "room": "416",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-255-001",
+                    "start": "2024-03-20T10:10:00",
+                    "end": "2024-03-20T11:10:00",
+                    "faculty1": "Lichty, Joshua J",
+                    "room": "416",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-255-001",
+                    "start": "2024-03-22T10:10:00",
+                    "end": "2024-03-22T11:10:00",
+                    "faculty1": "Lichty, Joshua J",
+                    "room": "416",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-270-001",
+                    "start": "2024-03-19T08:00:00",
+                    "end": "2024-03-19T09:30:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-270-001",
+                    "start": "2024-03-21T08:00:00",
+                    "end": "2024-03-21T09:30:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-344-001",
+                    "start": "2024-03-19T09:30:00",
+                    "end": "2024-03-19T11:00:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-344-001",
+                    "start": "2024-03-21T09:30:00",
+                    "end": "2024-03-21T11:00:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-365-001",
+                    "start": "2024-03-18T10:10:00",
+                    "end": "2024-03-18T11:10:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-365-001",
+                    "start": "2024-03-20T10:10:00",
+                    "end": "2024-03-20T11:10:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-365-001",
+                    "start": "2024-03-22T10:10:00",
+                    "end": "2024-03-22T11:10:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "PHYS-102-001",
+                    "start": "2024-03-18T08:00:00",
+                    "end": "2024-03-18T09:00:00",
+                    "faculty1": "Narayanan, Madhavan",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-102-001",
+                    "start": "2024-03-20T08:00:00",
+                    "end": "2024-03-20T09:00:00",
+                    "faculty1": "Narayanan, Madhavan",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-102-001",
+                    "start": "2024-03-22T08:00:00",
+                    "end": "2024-03-22T09:00:00",
+                    "faculty1": "Narayanan, Madhavan",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-251-001",
+                    "start": "2024-03-18T15:35:00",
+                    "end": "2024-03-18T16:35:00",
+                    "faculty1": "Gerig, Anthony L",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-251-001",
+                    "start": "2024-03-20T15:35:00",
+                    "end": "2024-03-20T16:35:00",
+                    "faculty1": "Gerig, Anthony L",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-251-001",
+                    "start": "2024-03-22T15:35:00",
+                    "end": "2024-03-22T16:35:00",
+                    "faculty1": "Gerig, Anthony L",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-261-001",
+                    "start": "2024-03-18T09:05:00",
+                    "end": "2024-03-18T10:05:00",
+                    "faculty1": "Anglehart, Joseph",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-261-001",
+                    "start": "2024-03-20T09:05:00",
+                    "end": "2024-03-20T10:05:00",
+                    "faculty1": "Anglehart, Joseph",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-261-001",
+                    "start": "2024-03-22T09:05:00",
+                    "end": "2024-03-22T10:05:00",
+                    "faculty1": "Anglehart, Joseph",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "MATH-091-001",
+                    "start": "2024-03-19T15:30:00",
+                    "end": "2024-03-19T17:00:00",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-091-001",
+                    "start": "2024-03-21T15:30:00",
+                    "end": "2024-03-21T17:00:00",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-499-001",
+                    "start": "2024-03-19T15:30:00",
+                    "end": "2024-03-19T17:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-499-001",
+                    "start": "2024-03-21T15:30:00",
+                    "end": "2024-03-21T17:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "CSCI-499-001",
+                    "start": "2024-03-19T12:30:00",
+                    "end": "2024-03-19T14:00:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-499-001",
+                    "start": "2024-03-21T12:30:00",
+                    "end": "2024-03-21T14:00:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                }
+            ]
+        },
+        {
+            "schedule": [
+                {
+                    "section": "CSCI-160-001",
+                    "timeslot": "M W F - 11:15AM",
+                    "minCredit": "4",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "CSCI-200-001",
+                    "timeslot": "M W F - 12:20PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-250-001",
+                    "timeslot": "M W F - 3:35PM",
+                    "minCredit": "4",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-499-001",
+                    "timeslot": "M W F - 1:25PM",
+                    "minCredit": "3",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-112-001",
+                    "timeslot": "M W F - 3:35PM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "secCap": "30"
+                },
+                {
+                    "section": "MATH-113-001",
+                    "timeslot": "M W F - 2:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "secCap": "30"
+                },
+                {
+                    "section": "MATH-130-002",
+                    "timeslot": "M W F - 2:30PM",
+                    "minCredit": "3",
+                    "faculty1": "TBD",
+                    "room": "",
+                    "bldg": "",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-221-001",
+                    "timeslot": "M W F - 12:20PM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-255-001",
+                    "timeslot": "M W F - 10:10AM",
+                    "minCredit": "3",
+                    "faculty1": "Lichty, Joshua J",
+                    "room": "416",
+                    "bldg": "MRC",
+                    "secCap": "30"
+                },
+                {
+                    "section": "MATH-365-001",
+                    "timeslot": "M W F - 2:30PM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "PHYS-102-001",
+                    "timeslot": "M W F - 8:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Narayanan, Madhavan",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "secCap": "18"
+                },
+                {
+                    "section": "CSCI-210-001",
+                    "timeslot": "M W F - 2:00PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "CSCI-210-001",
+                    "timeslot": "Tu Th - 2:00PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-150-001",
+                    "timeslot": "M W F - 12:30PM",
+                    "minCredit": "4",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-150-001",
+                    "timeslot": "Tu Th - 12:30PM",
+                    "minCredit": "4",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-320-001",
+                    "timeslot": "M W F - 2:00PM",
+                    "minCredit": "4",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-320-001",
+                    "timeslot": "Tu Th - 2:00PM",
+                    "minCredit": "4",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-365-001",
+                    "timeslot": "M W F - 8:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-365-001",
+                    "timeslot": "Tu Th - 8:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-370-001",
+                    "timeslot": "M W F - 12:30PM",
+                    "minCredit": "4",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-370-001",
+                    "timeslot": "Tu Th - 12:30PM",
+                    "minCredit": "4",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-489-001",
+                    "timeslot": "M W F - 9:30AM",
+                    "minCredit": "3",
+                    "faculty1": "",
+                    "room": "ARRG",
+                    "bldg": "ARRG",
+                    "secCap": "16"
+                },
+                {
+                    "section": "ENGR-489-001",
+                    "timeslot": "Tu Th - 9:30AM",
+                    "minCredit": "3",
+                    "faculty1": "",
+                    "room": "ARRG",
+                    "bldg": "ARRG",
+                    "secCap": "16"
+                },
+                {
+                    "section": "MATH-230-001",
+                    "timeslot": "M W F - 11:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-230-001",
+                    "timeslot": "Tu Th - 11:00AM",
+                    "minCredit": "4",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-344-001",
+                    "timeslot": "M W F - 9:30AM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "secCap": "16"
+                },
+                {
+                    "section": "MATH-344-001",
+                    "timeslot": "Tu Th - 9:30AM",
+                    "minCredit": "3",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "secCap": "16"
+                },
+                {
+                    "section": "CSCI-499-001",
+                    "timeslot": "M W F - 12:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                },
+                {
+                    "section": "CSCI-499-001",
+                    "timeslot": "Tu Th - 12:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                },
+                {
+                    "section": "PHYS-261-001",
+                    "timeslot": "M W F - 9:05AM",
+                    "minCredit": "3",
+                    "faculty1": "Anglehart, Joseph",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "secCap": "20"
+                },
+                {
+                    "section": "MATH-091-001",
+                    "timeslot": "M W F - 3:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-091-001",
+                    "timeslot": "Tu Th - 3:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-499-001",
+                    "timeslot": "M W F - 11:15AM",
+                    "minCredit": "3",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                },
+                {
+                    "section": "MATH-499-001",
+                    "timeslot": "Tu Th - 3:30PM",
+                    "minCredit": "3",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "secCap": "24"
+                }
+            ],
+            "score": 42696.0,
+            "algorithm": "GA",
+            "slot_differences": 0,
+            "calendar_events": [
+                {
+                    "section_name": "CSCI-160-001",
+                    "start": "2024-03-18T11:15:00",
+                    "end": "2024-03-18T12:15:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-160-001",
+                    "start": "2024-03-20T11:15:00",
+                    "end": "2024-03-20T12:15:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-160-001",
+                    "start": "2024-03-22T11:15:00",
+                    "end": "2024-03-22T12:15:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-200-001",
+                    "start": "2024-03-18T12:20:00",
+                    "end": "2024-03-18T13:20:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-200-001",
+                    "start": "2024-03-20T12:20:00",
+                    "end": "2024-03-20T13:20:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-200-001",
+                    "start": "2024-03-22T12:20:00",
+                    "end": "2024-03-22T13:20:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "ENGR-250-001",
+                    "start": "2024-03-18T15:35:00",
+                    "end": "2024-03-18T16:35:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-250-001",
+                    "start": "2024-03-20T15:35:00",
+                    "end": "2024-03-20T16:35:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-250-001",
+                    "start": "2024-03-22T15:35:00",
+                    "end": "2024-03-22T16:35:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-499-001",
+                    "start": "2024-03-18T13:25:00",
+                    "end": "2024-03-18T14:25:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-499-001",
+                    "start": "2024-03-20T13:25:00",
+                    "end": "2024-03-20T14:25:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-499-001",
+                    "start": "2024-03-22T13:25:00",
+                    "end": "2024-03-22T14:25:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "MATH-112-001",
+                    "start": "2024-03-18T15:35:00",
+                    "end": "2024-03-18T16:35:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-112-001",
+                    "start": "2024-03-20T15:35:00",
+                    "end": "2024-03-20T16:35:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-112-001",
+                    "start": "2024-03-22T15:35:00",
+                    "end": "2024-03-22T16:35:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-113-001",
+                    "start": "2024-03-18T14:30:00",
+                    "end": "2024-03-18T15:30:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-113-001",
+                    "start": "2024-03-20T14:30:00",
+                    "end": "2024-03-20T15:30:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-113-001",
+                    "start": "2024-03-22T14:30:00",
+                    "end": "2024-03-22T15:30:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "346",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-221-001",
+                    "start": "2024-03-18T12:20:00",
+                    "end": "2024-03-18T13:20:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-221-001",
+                    "start": "2024-03-20T12:20:00",
+                    "end": "2024-03-20T13:20:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-221-001",
+                    "start": "2024-03-22T12:20:00",
+                    "end": "2024-03-22T13:20:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "444",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-255-001",
+                    "start": "2024-03-18T10:10:00",
+                    "end": "2024-03-18T11:10:00",
+                    "faculty1": "Lichty, Joshua J",
+                    "room": "416",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-255-001",
+                    "start": "2024-03-20T10:10:00",
+                    "end": "2024-03-20T11:10:00",
+                    "faculty1": "Lichty, Joshua J",
+                    "room": "416",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-255-001",
+                    "start": "2024-03-22T10:10:00",
+                    "end": "2024-03-22T11:10:00",
+                    "faculty1": "Lichty, Joshua J",
+                    "room": "416",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-365-001",
+                    "start": "2024-03-18T14:30:00",
+                    "end": "2024-03-18T15:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-365-001",
+                    "start": "2024-03-20T14:30:00",
+                    "end": "2024-03-20T15:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-365-001",
+                    "start": "2024-03-22T14:30:00",
+                    "end": "2024-03-22T15:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "PHYS-102-001",
+                    "start": "2024-03-18T08:00:00",
+                    "end": "2024-03-18T09:00:00",
+                    "faculty1": "Narayanan, Madhavan",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-102-001",
+                    "start": "2024-03-20T08:00:00",
+                    "end": "2024-03-20T09:00:00",
+                    "faculty1": "Narayanan, Madhavan",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-102-001",
+                    "start": "2024-03-22T08:00:00",
+                    "end": "2024-03-22T09:00:00",
+                    "faculty1": "Narayanan, Madhavan",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "CSCI-210-001",
+                    "start": "2024-03-18T14:00:00",
+                    "end": "2024-03-18T15:00:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-210-001",
+                    "start": "2024-03-20T14:00:00",
+                    "end": "2024-03-20T15:00:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-210-001",
+                    "start": "2024-03-22T14:00:00",
+                    "end": "2024-03-22T15:00:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-210-001",
+                    "start": "2024-03-19T14:00:00",
+                    "end": "2024-03-19T15:30:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-210-001",
+                    "start": "2024-03-21T14:00:00",
+                    "end": "2024-03-21T15:30:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "ENGR-150-001",
+                    "start": "2024-03-18T12:30:00",
+                    "end": "2024-03-18T13:30:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-150-001",
+                    "start": "2024-03-20T12:30:00",
+                    "end": "2024-03-20T13:30:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-150-001",
+                    "start": "2024-03-22T12:30:00",
+                    "end": "2024-03-22T13:30:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-150-001",
+                    "start": "2024-03-19T12:30:00",
+                    "end": "2024-03-19T14:00:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-150-001",
+                    "start": "2024-03-21T12:30:00",
+                    "end": "2024-03-21T14:00:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "438",
+                    "bldg": "FAC",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-320-001",
+                    "start": "2024-03-18T14:00:00",
+                    "end": "2024-03-18T15:00:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-320-001",
+                    "start": "2024-03-20T14:00:00",
+                    "end": "2024-03-20T15:00:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-320-001",
+                    "start": "2024-03-22T14:00:00",
+                    "end": "2024-03-22T15:00:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-320-001",
+                    "start": "2024-03-19T14:00:00",
+                    "end": "2024-03-19T15:30:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-320-001",
+                    "start": "2024-03-21T14:00:00",
+                    "end": "2024-03-21T15:30:00",
+                    "faculty1": "Vanderfleet, Emily J",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-365-001",
+                    "start": "2024-03-18T08:00:00",
+                    "end": "2024-03-18T09:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-365-001",
+                    "start": "2024-03-20T08:00:00",
+                    "end": "2024-03-20T09:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-365-001",
+                    "start": "2024-03-22T08:00:00",
+                    "end": "2024-03-22T09:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-365-001",
+                    "start": "2024-03-19T08:00:00",
+                    "end": "2024-03-19T09:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-365-001",
+                    "start": "2024-03-21T08:00:00",
+                    "end": "2024-03-21T09:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-370-001",
+                    "start": "2024-03-18T12:30:00",
+                    "end": "2024-03-18T13:30:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-370-001",
+                    "start": "2024-03-20T12:30:00",
+                    "end": "2024-03-20T13:30:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-370-001",
+                    "start": "2024-03-22T12:30:00",
+                    "end": "2024-03-22T13:30:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-370-001",
+                    "start": "2024-03-19T12:30:00",
+                    "end": "2024-03-19T14:00:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "ENGR-370-001",
+                    "start": "2024-03-21T12:30:00",
+                    "end": "2024-03-21T14:00:00",
+                    "faculty1": "Harned, Richard C",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#67a113"
+                },
+                {
+                    "section_name": "MATH-230-001",
+                    "start": "2024-03-18T11:00:00",
+                    "end": "2024-03-18T12:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-230-001",
+                    "start": "2024-03-20T11:00:00",
+                    "end": "2024-03-20T12:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-230-001",
+                    "start": "2024-03-22T11:00:00",
+                    "end": "2024-03-22T12:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-230-001",
+                    "start": "2024-03-19T11:00:00",
+                    "end": "2024-03-19T12:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-230-001",
+                    "start": "2024-03-21T11:00:00",
+                    "end": "2024-03-21T12:30:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-344-001",
+                    "start": "2024-03-18T09:30:00",
+                    "end": "2024-03-18T10:30:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-344-001",
+                    "start": "2024-03-20T09:30:00",
+                    "end": "2024-03-20T10:30:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-344-001",
+                    "start": "2024-03-22T09:30:00",
+                    "end": "2024-03-22T10:30:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-344-001",
+                    "start": "2024-03-19T09:30:00",
+                    "end": "2024-03-19T11:00:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-344-001",
+                    "start": "2024-03-21T09:30:00",
+                    "end": "2024-03-21T11:00:00",
+                    "faculty1": "Wodzak, Michael A",
+                    "room": "378",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "CSCI-499-001",
+                    "start": "2024-03-18T12:30:00",
+                    "end": "2024-03-18T13:30:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-499-001",
+                    "start": "2024-03-20T12:30:00",
+                    "end": "2024-03-20T13:30:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-499-001",
+                    "start": "2024-03-22T12:30:00",
+                    "end": "2024-03-22T13:30:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-499-001",
+                    "start": "2024-03-19T12:30:00",
+                    "end": "2024-03-19T14:00:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "CSCI-499-001",
+                    "start": "2024-03-21T12:30:00",
+                    "end": "2024-03-21T14:00:00",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#ee0639"
+                },
+                {
+                    "section_name": "PHYS-261-001",
+                    "start": "2024-03-18T09:05:00",
+                    "end": "2024-03-18T10:05:00",
+                    "faculty1": "Anglehart, Joseph",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-261-001",
+                    "start": "2024-03-20T09:05:00",
+                    "end": "2024-03-20T10:05:00",
+                    "faculty1": "Anglehart, Joseph",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "PHYS-261-001",
+                    "start": "2024-03-22T09:05:00",
+                    "end": "2024-03-22T10:05:00",
+                    "faculty1": "Anglehart, Joseph",
+                    "room": "229",
+                    "bldg": "RCE",
+                    "color": "#ce6df7"
+                },
+                {
+                    "section_name": "MATH-091-001",
+                    "start": "2024-03-18T15:30:00",
+                    "end": "2024-03-18T16:30:00",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-091-001",
+                    "start": "2024-03-20T15:30:00",
+                    "end": "2024-03-20T16:30:00",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-091-001",
+                    "start": "2024-03-22T15:30:00",
+                    "end": "2024-03-22T16:30:00",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-091-001",
+                    "start": "2024-03-19T15:30:00",
+                    "end": "2024-03-19T17:00:00",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-091-001",
+                    "start": "2024-03-21T15:30:00",
+                    "end": "2024-03-21T17:00:00",
+                    "faculty1": "Gaedy, Beth M",
+                    "room": "314",
+                    "bldg": "MRC",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-499-001",
+                    "start": "2024-03-18T11:15:00",
+                    "end": "2024-03-18T12:15:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-499-001",
+                    "start": "2024-03-20T11:15:00",
+                    "end": "2024-03-20T12:15:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-499-001",
+                    "start": "2024-03-22T11:15:00",
+                    "end": "2024-03-22T12:15:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-499-001",
+                    "start": "2024-03-19T15:30:00",
+                    "end": "2024-03-19T17:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                },
+                {
+                    "section_name": "MATH-499-001",
+                    "start": "2024-03-21T15:30:00",
+                    "end": "2024-03-21T17:00:00",
+                    "faculty1": "Lee, Sheldon H",
+                    "room": "233",
+                    "bldg": "RCE",
+                    "color": "#65571a"
+                }
+            ]
+        }
+    ],
+    "message": "Optimization completed"
+}

@@ -1,0 +1,57 @@
+sec name,title,min Credit,max Credit,sec Mthd,# wks,sec Start,sec End,sec Cap,x Listed,bldg,room,teach Mthd,week Days,CSM start,CSM end,"CSM 
+start",CSM end,faculty1,faculty2
+CHEM-101-001,Introduction to Chemistry,4,,CAMP,16,8/28/23,12/15/23,24,,RCE,201,LECT,M W F ,8/28/23,12/8/23,2:30PM,3:20PM,"Konkel, Michael J",
+CHEM-101-001,Introduction to Chemistry,4,,CAMP,16,8/28/23,12/15/23,24,,RCE,301,LABR,M ,8/28/23,12/8/23,3:35PM,5:25PM,"Konkel, Michael J",
+CHEM-106-001,Chmstry for Hlth Scnces,4,,CAMP,16,8/28/23,12/15/23,22,,RCE,201,LECT,M W F ,8/28/23,12/8/23,9:05AM,10:00AM,"Backstrand, Kyle M","Konkel, Michael J"
+CHEM-106-001,Chmstry for Hlth Scnces,4,,CAMP,16,8/28/23,12/15/23,22,,RCE,301,LECT,Th ,8/28/23,12/8/23,8:00AM,9:50AM,"Backstrand, Kyle M","Konkel, Michael J"
+CHEM-106-002,Chmstry for Hlth Scnces,4,,CAMP,16,8/28/23,12/15/23,22,,RCE,201,LECT,M W F ,8/28/23,12/8/23,9:05AM,10:00AM,"Backstrand, Kyle M","Konkel, Michael J"
+CHEM-106-002,Chmstry for Hlth Scnces,4,,CAMP,16,8/28/23,12/15/23,22,,RCE,301,LECT,Th ,8/28/23,12/8/23,10:00AM,11:50AM,"Backstrand, Kyle M","Konkel, Michael J"
+CHEM-112-001,Science Success,1,,CAMP,16,8/28/23,12/15/23,30,BIOL-112,RCE,134,LECT,Tu ,8/28/23,12/8/23,11:30AM,12:20PM,"Gabriel, Scott E",
+CHEM-120-001,General Chemistry I,4,,CAMP,16,8/28/23,12/15/23,24,,RCE,134,LECT,M W F ,8/28/23,12/8/23,11:15AM,12:10PM,"Gabriel, Scott E","Ames, James R"
+CHEM-120-001,General Chemistry I,4,,CAMP,16,8/28/23,12/15/23,24,,RCE,301,LABR,Tu ,8/28/23,12/8/23,8:00AM,10:50AM,"Gabriel, Scott E","Ames, James R"
+CHEM-120-002,General Chemistry I,4,,CAMP,16,8/28/23,12/15/23,24,,RCE,134,LECT,M W F ,8/28/23,12/8/23,11:15AM,12:10PM,"Gabriel, Scott E","Ames, James R"
+CHEM-120-002,General Chemistry I,4,,CAMP,16,8/28/23,12/15/23,24,,RCE,301,LABR,Tu ,8/28/23,12/8/23,12:30PM,3:20PM,"Gabriel, Scott E","Ames, James R"
+CHEM-140-001,Orgnic Chem Hlth Scinces,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,229,LECT,M W F ,8/28/23,12/8/23,2:30PM,3:25PM,"Stepanova, Valeria A",
+CHEM-140-001,Orgnic Chem Hlth Scinces,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,324,LABR,W ,8/28/23,12/8/23,3:35PM,5:25PM,"Stepanova, Valeria A",
+CHEM-240-001,Organic Chemistry I,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,201,LECT,M W F ,8/28/23,12/8/23,10:10AM,11:05AM,"Stepanova, Valeria A",
+CHEM-240-001,Organic Chemistry I,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,324,LABR,Tu ,8/28/23,12/8/23,8:00AM,10:50AM,"Stepanova, Valeria A",
+CHEM-240-002,Organic Chemistry I,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,201,LECT,M W F ,8/28/23,12/8/23,10:10AM,11:05AM,"Stepanova, Valeria A",
+CHEM-240-002,Organic Chemistry I,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,324,LABR,Tu ,8/28/23,12/8/23,12:30PM,3:20PM,"Stepanova, Valeria A",
+CHEM-330-001,Analytical Chemistry,4,,CAMP,16,8/28/23,12/15/23,20,,RCE,229,LECT,M W F ,8/28/23,12/8/23,1:25PM,2:20PM,"Backstrand, Kyle M",
+CHEM-330-001,Analytical Chemistry,4,,CAMP,16,8/28/23,12/15/23,20,,RCE,303,LABR,Tu ,8/28/23,12/8/23,8:00AM,11:50AM,"Backstrand, Kyle M",
+CHEM-370-001,Biochemistry,4,,CAMP,16,8/28/23,12/15/23,10,BIOL-370,RCE,229,LECT,M W F ,8/28/23,12/8/23,10:10AM,11:05AM,"Gabriel, Scott E","Driscoll, Susanna M"
+CHEM-370-001,Biochemistry,4,,CAMP,16,8/28/23,12/15/23,10,BIOL-370,RCE,316,LABR,Th ,8/28/23,12/8/23,8:00AM,11:50AM,"Gabriel, Scott E","Driscoll, Susanna M"
+CHEM-397-001,Introduction to Research,3,,CAMP,16,8/28/23,12/15/23,12,BIOL-397,RCE,229,LECT,M W F ,8/28/23,12/8/23,2:30PM,3:25PM,"Backstrand, Kyle M",
+ENGR-112-001,Engineering Success,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,233,LECT,M W F ,8/28/23,12/8/23,10:10AM,11:05AM,"Vanderfleet, Emily J",
+ENGR-112-001,Engineering Success,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,233,LABR,Tu ,8/28/23,12/8/23,2:30PM,3:25PM,"Vanderfleet, Emily J",
+ENGR-130-001,First-Year Design,3,,CAMP,16,8/28/23,12/15/23,16,,RCE,233,LECT,M W ,8/28/23,12/8/23,1:25PM,2:45PM,"Harned, Richard C",
+ENGR-230-001,Circuits,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,233,LECT,Tu Th ,8/28/23,12/8/23,9:30AM,10:50AM,"Harned, Richard C",
+ENGR-230-001,Circuits,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,233,LABR,Tu Th ,8/28/23,12/8/23,11:00AM,11:55AM,"Harned, Richard C",
+ENGR-280-001,Dynamics,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,233,LECT,M W F ,8/28/23,12/8/23,11:15AM,12:10PM,"Harned, Richard C",
+ENGR-280-001,Dynamics,4,,CAMP,16,8/28/23,12/15/23,16,,RCE,233,LABR,Th ,8/28/23,12/8/23,9:00AM,10:50AM,"Harned, Richard C",
+ENGR-489-001,Capstone Internship,3,15,INTR,16,8/28/23,12/15/23,16,,ARRG,ARRG,INTR,,8/28/23,12/15/23,,,"Gostonczik, Alyssa R",
+ENGR-498-001,Design Capstone 1,3,,CAMP,16,8/28/23,12/15/23,16,,RCE,233,LECT,Tu Th ,8/28/23,12/8/23,12:30PM,2:20PM,"Harned, Richard C","Vanderfleet, Emily J"
+MATH-081-001,Just in Time Algbra Lab,1,,CAMP,16,8/28/23,12/15/23,24,,MRC,316,LABR,Th ,8/28/23,12/8/23,11:00AM,11:55AM,"Gaedy, Beth M",
+MATH-083-001,Just in Time Stats Lab,1,,CAMP,16,8/28/23,12/15/23,24,,MRC,316,LABR,Tu ,8/28/23,12/8/23,11:00AM,11:55AM,"Gaedy, Beth M",
+MATH-091-001,Elementary Algebra,3,,CAMP,16,8/28/23,12/15/23,24,,MRC,418,LECT,M W F ,8/28/23,12/8/23,10:10AM,11:05AM,"Gaedy, Beth M",
+MATH-112-001,College Algebra,3,,CAMP,16,8/28/23,12/15/23,30,,MRC,378,LECT,M W F ,8/28/23,12/8/23,8:00AM,8:55AM,,
+MATH-112-002,College Algebra,3,,CAMP,16,8/28/23,12/15/23,30,,MRC,378,LECT,M W F ,8/28/23,12/8/23,9:05AM,10:00AM,,
+MATH-130-001,Introductory Statistics,3,,CAMP,16,8/28/23,12/15/23,23,,MRC,316,LECT,M W F ,8/28/23,12/8/23,1:25PM,2:20PM,"Overturf, Diane R",
+MATH-130-002,Introductory Statistics,3,,ONLN,16,8/28/23,12/15/23,23,,,,ONLN,,8/28/23,12/15/23,,,"Overturf, Diane R",
+MATH-155-001,Math a Way of Thinking,3,,CAMP,16,8/28/23,12/15/23,30,,MRC,378,LECT,M W F ,8/28/23,12/8/23,1:25PM,2:20PM,"Wodzak, Michael A",
+MATH-220-001,Calculus I,4,,CAMP,16,8/28/23,12/15/23,30,,MRC,436,LECT,M W F ,8/28/23,12/8/23,9:05AM,10:00AM,"Wodzak, Michael A",
+MATH-220-001,Calculus I,4,,CAMP,16,8/28/23,12/15/23,30,,MRC,436,LECT,Th ,8/28/23,12/8/23,11:00AM,11:50AM,"Wodzak, Michael A",
+MATH-230-001,Statistics With R Prog,4,,PONL,16,8/28/23,12/15/23,24,,MRC,348,LECT,M W F ,8/28/23,12/8/23,2:30PM,3:25PM,"Lee, Sheldon H",
+MATH-230-001,Statistics With R Prog,4,,PONL,16,8/28/23,12/15/23,24,,,,ONLN,,8/28/23,12/8/23,,,"Lee, Sheldon H",
+MATH-261-001,Discrete Mathematics,4,,CAMP,16,8/28/23,12/15/23,30,,MRC,418,LECT,M W F ,8/28/23,12/8/23,11:15AM,12:10PM,"Lee, Sheldon H",
+MATH-261-001,Discrete Mathematics,4,,CAMP,16,8/28/23,12/15/23,30,,MRC,418,LECT,Tu ,8/28/23,12/8/23,11:00AM,11:50AM,"Lee, Sheldon H",
+MATH-270-001,Managerial Mathematics,3,,CAMP,16,8/28/23,12/15/23,30,,MRC,378,LECT,M W F ,8/28/23,12/8/23,10:10AM,11:05AM,"Wodzak, Michael A",
+MATH-320-001,Calculus III,4,,CAMP,16,8/28/23,12/15/23,30,,MRC,378,LECT,M W F ,8/28/23,12/8/23,12:20PM,1:15PM,"Wodzak, Michael A",
+MATH-320-001,Calculus III,4,,CAMP,16,8/28/23,12/15/23,30,,MRC,436,LECT,Tu ,8/28/23,12/8/23,11:00AM,11:50AM,"Wodzak, Michael A",
+MATH-325-001,Diff Eqtns Lnr Algebra,4,,CAMP,16,8/28/23,12/15/23,24,,FAC,204,LECT,M W F ,8/28/23,12/8/23,9:05AM,10:00AM,"Lee, Sheldon H",
+MATH-325-001,Diff Eqtns Lnr Algebra,4,,CAMP,16,8/28/23,12/15/23,24,,FAC,204,LABR,W ,8/28/23,12/8/23,10:10AM,11:00AM,"Lee, Sheldon H",
+MATH-335-001,Data Analysis,3,,CAMP,16,8/28/23,12/15/23,24,,RCE,201,LECT,Tu Th ,8/28/23,12/8/23,9:30AM,10:50AM,"Lee, Sheldon H",
+PHYS-250-001,General Physics I,3,,CAMP,16,8/28/23,12/15/23,24,,RCE,229,LECT,M W F ,8/28/23,12/8/23,9:05AM,10:00AM,"Gerig, Anthony L",
+PHYS-260-001,University Physics I,3,,CAMP,16,8/28/23,12/15/23,24,,RCE,229,LECT,M W F ,8/28/23,12/8/23,1:25PM,2:20PM,"Vanderfleet, Emily J",
+PHYS-270-001,Intro Physics Lab I,1,,CAMP,16,8/28/23,12/15/23,18,,RCE,229,LABR,Th ,8/28/23,12/8/23,9:00AM,10:50AM,"Vanderfleet, Emily J",
+PHYS-270-002,Intro Physics Lab I,1,,CAMP,16,8/28/23,12/15/23,18,,RCE,229,LABR,Th ,8/28/23,12/8/23,1:00PM,2:50PM,"Vanderfleet, Emily J",

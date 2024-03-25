@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        
+        {
+            "name": "Launch Chrome against localhost",
+            "type": "pwa-chrome",
+            "request": "launch",
+            "url": "http://localhost:3000", // The default port for Create React App
+            "webRoot": "${workspaceFolder}/src",
+            "sourceMapPathOverrides": {
+                "webpack:///src/*": "${webRoot}/*"
+            }
+        }
+    ]
