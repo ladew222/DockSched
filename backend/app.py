@@ -1836,56 +1836,54 @@ def validate_csv_for_class_section(csv_data):
     return "CSV data is valid for ClassSection.", True
 
 
+import random
+
+import random
+
+import random
+
 def custom_mutate(individual, mutpb):
-    section_timeslots_map = {}
     full_meeting_times = create_full_meeting_times()
-    for class_section in individual:
-        section_name = class_section['section']
-        section_timeslots_map.setdefault(section_name, []).append(class_section)
 
     for i in range(len(individual)):
         class_section = individual[i]
-        # Directly use the mutation probability provided (mutpb) without adjustment for failed_sections
-        if random.random() < mutpb:
+        if random.random() < mutpb:  # Mutation probability check
             minCredit = int(class_section['minCredit'])
-            pattern_timeslots = []
-            mwf_timeslots = []
-            tuth_timeslots = []
+            
+            # For 1-credit classes, pick any available timeslot
+            if minCredit == 1:
+                new_timeslot = random.choice(full_meeting_times)
+                class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
+            else:
+                # Determine the current pattern of the class
+                is_mwf = 'M' in class_section['timeslot'] and 'W' in class_section['timeslot'] and 'F' in class_section['timeslot']
+                is_tuth = 'Tu' in class_section['timeslot'] and 'Th' in class_section['timeslot']
 
-            if minCredit >= 3:
-                all_timeslots = section_timeslots_map[section_name]
-                is_mwf = all(['M' in ts['timeslot'] and 'W' in ts['timeslot'] and 'F' in ts['timeslot'] for ts in all_timeslots])
-                is_tuth = all(['Tu' in ts['timeslot'] and 'Th' in ts['timeslot'] for ts in all_timeslots])
-
-                if random.random() < 0.5:  # Change timeslot within the same pattern
+                # Decide whether to mutate within the same pattern or switch patterns
+                if random.random() < 0.5:  # Stay within the same pattern
                     if is_mwf:
-                        pattern_timeslots = [ts for ts in full_meeting_times if 'M' in ts['days'] and 'W' in ts['days'] and 'F' in ts['days']]
+                        mwf_timeslots = [ts for ts in full_meeting_times if 'M' in ts['days'] and 'W' in ts['days'] and 'F' in ts['days']]
+                        new_timeslot = random.choice(mwf_timeslots)
+                        class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
                     elif is_tuth:
-                        pattern_timeslots = [ts for ts in full_meeting_times if 'Tu' in ts['days'] and 'Th' in ts['days']]
+                        tuth_timeslots = [ts for ts in full_meeting_times if 'Tu' in ts['days'] and 'Th' in ts['days']]
+                        new_timeslot = random.choice(tuth_timeslots)
+                        class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
 
-                    if pattern_timeslots:
-                        new_timeslot = random.choice(pattern_timeslots)
-                        for ts in all_timeslots:
-                            ts['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
                 else:  # Switch pattern
                     if is_mwf:
                         tuth_timeslots = [ts for ts in full_meeting_times if 'Tu' in ts['days'] and 'Th' in ts['days']]
+                        new_timeslot = random.choice(tuth_timeslots)
+                        class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
                     elif is_tuth:
                         mwf_timeslots = [ts for ts in full_meeting_times if 'M' in ts['days'] and 'W' in ts['days'] and 'F' in ts['days']]
-
-                    if (is_mwf and tuth_timeslots) or (is_tuth and mwf_timeslots):
-                        new_timeslot = random.choice(tuth_timeslots if is_mwf else mwf_timeslots)
-                        for ts in all_timeslots:
-                            ts['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
-
-            else:
-                current_day = class_section['timeslot'].split(' - ')[0]
-                same_day_timeslots = [ts for ts in full_meeting_times if current_day in ts['days']]
-                if same_day_timeslots:
-                    new_timeslot = random.choice(same_day_timeslots)
-                    class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
+                        new_timeslot = random.choice(mwf_timeslots)
+                        class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
 
     return individual,
+
+
+
 from datetime import datetime
 
 def preprocess_input_data(class_sections):
