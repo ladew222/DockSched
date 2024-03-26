@@ -6,6 +6,9 @@ import Button from '@mui/material/Button';
 import Slider from '@mui/material/Slider';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
+import { toast } from 'react-toastify';
+
+
 
 // Styled components for better control over slider color
 const StyledSlider = styled(Slider)(({ theme }) => ({
@@ -45,7 +48,7 @@ const CustomToolbar = ({ fileData, onOptimize, onHoldAll, sliderValues, onSlider
       const formData = new FormData();
       formData.append('file', file);
 
-      fetch('http://127.0.0.1:5000/upload_student_schedule', {
+      fetch('http://127.0.0.1:5001/upload_student_schedule', {
         method: 'POST',
         body: formData,
       })
@@ -57,20 +60,21 @@ const CustomToolbar = ({ fileData, onOptimize, onHoldAll, sliderValues, onSlider
       })
       .then(result => {
         if (result.error) {
-          setUploadStatus(result.error);
+          toast.error(`Upload failed: ${result.error}`);
           return;
         }
-        setUploadStatus('File uploaded successfully.');
+        toast.success('File uploaded successfully.');
         // Optionally, perform an action on successful upload
         // onOptimize(); // You can call onOptimize or similar function if needed
       })
       .catch(error => {
-        setUploadStatus('Failed to upload file. ' + error.message);
+        toast.error(`Failed to upload file: ${error.message}`);
       });
     } else {
-      setUploadStatus('Please select a file first.');
+      toast.error('Please select a file first.');
     }
   };
+
 
   
   

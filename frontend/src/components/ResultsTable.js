@@ -89,8 +89,8 @@ const ResultsTable = ({ results }) => {
 
           <TableContainer component={Paper} style={{ marginBottom: '20px' }}>
               <Table aria-label="optimization results table">
-                <TableHead>
-                  <TableRow>
+                <TableHead style={{ color: 'white' }}>
+                  <TableRow id="row_res">
                     <TableCell>Section</TableCell>
                     <TableCell>Title</TableCell>
                     <TableCell>Min Credit</TableCell>
