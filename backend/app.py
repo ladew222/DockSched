@@ -381,7 +381,7 @@ def upload_student_schedule():
         student_schedule_data = pd.read_csv(file)
         
         # Ensure the necessary columns exist
-        expected_columns = ['StudentID', 'Class1', 'Class2', 'Class3', 'Class4']  # Add more if necessary
+        expected_columns = ['StudentID', 'Class1']  # Add more if necessary
         missing_columns = set(expected_columns) - set(student_schedule_data.columns)
         
         if missing_columns:

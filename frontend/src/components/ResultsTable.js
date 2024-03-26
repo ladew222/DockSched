@@ -74,15 +74,9 @@ const ResultsTable = ({ results }) => {
             </option>
           ))}
         </select>
-        {/* Display student_conflicts next to the dropdown */}
-        {currentResult.student_conflicts && (
-            <div>
-              <strong>Student Conflicts:</strong> {currentResult.student_conflicts}
-            </div>
-          )}
         {/* Display current result */}
         <div>
-          <h2>Result {currentIndex + 1} - Score: {currentResult.score}</h2>
+          <h2>Result {currentIndex + 1} - Score: {currentResult.score }<strong> Student Conflicts:</strong>{currentResult.student_conflicts}</h2> 
           <Button onClick={() => handleDownloadCSV(currentResult)}>
             Download CSV for Result {currentIndex + 1}
           </Button>

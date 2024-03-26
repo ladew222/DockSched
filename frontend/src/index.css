@@ -185,7 +185,6 @@ th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-sizeMedium.css-1ygcj2i-MuiTa
 div#up_form {
   padding-top: 50px;
 }
-
-#row_res {
-  color: white;
+.css-1bigob2{
+  color: white !important;
 }
