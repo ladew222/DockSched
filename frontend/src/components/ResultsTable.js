@@ -76,7 +76,7 @@ const ResultsTable = ({ results }) => {
         </select>
         {/* Display current result */}
         <div>
-          <h2>Result {currentIndex + 1} - Score: {currentResult.score }<strong> Student Conflicts:</strong>{currentResult.student_conflicts}</h2> 
+          <h2>Result {currentIndex + 1} - Score: {currentResult.score } - Student Conflicts: {currentResult.student_conflicts}</h2> 
           <Button onClick={() => handleDownloadCSV(currentResult)}>
             Download CSV for Result {currentIndex + 1}
           </Button>
