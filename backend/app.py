@@ -60,44 +60,127 @@ def follows_pattern(timeslot, pattern):
         return all(day in days for day in ['Tu', 'Th'])
     return False
 
-
-def create_individual(failed_sections,combined_expanded_schedule, mutation_rate=0.3):
-    individual = []
-    day_assignment = {}  # Dictionary to track day assignments for each course
-    full_meeting_times = create_full_meeting_times()
-
-    for cls in combined_expanded_schedule:
-        # Copy class section detailså
-        new_class_section = cls.copy()
+def group_classes_by_course_identifier(schedule):
+    class_groups = {}
+    for cls in schedule:
         course_identifier = cls['section'].split('_')[0]
+        class_groups.setdefault(course_identifier, []).append(cls)
+    return class_groups
+
+def determine_original_pattern(sessions):
+    # Check if all sessions are on M, W, or F, which indicates an MWF pattern
+    is_original_mwf = all(any(day in session['timeslot'].split(' - ')[0] for day in ['M', 'W', 'F']) for session in sessions)
+    
+    # Return "MWF" if true, otherwise return "TuTh"
+    return "MWF" if is_original_mwf else "TuTh"
+
+
+def assign_timeslot(session, pattern):
+    # Access full_meeting_times from global_settings
+    full_meeting_times = global_settings.get('full_meeting_times', [])
+
+    # Ensure that full_meeting_times is not empty
+    if not full_meeting_times:
+        raise ValueError("full_meeting_times is empty or not set.")
+
+    # Filter timeslot_options based on the specified pattern
+    if pattern == "MWF":
+        filtered_timeslots = [ts for ts in full_meeting_times if set(ts['days'].split()).issubset({'M', 'W', 'F'})]
+    elif pattern == "TuTh":
+        filtered_timeslots = [ts for ts in full_meeting_times if 'Tu' in ts['days'] or 'Th' in ts['days']]
+    else:
+        filtered_timeslots = full_meeting_times
+
+    # Choose a timeslot from the filtered options
+    chosen_timeslot = random.choice(filtered_timeslots)
+
+    # Update the session with the chosen timeslot
+    #session['timeslot'] = f"{chosen_timeslot['days']} - {chosen_timeslot['start_time']}"
+
+    # Return the chosen days and start time separately
+    return chosen_timeslot['days'], chosen_timeslot['start_time']
+
+
+def create_individual(failed_sections, combined_expanded_schedule, mutation_rate=0.3):
+    try:
+        individual = []
+        individual_label = str(uuid.uuid4())  # Generate a unique identifier for the individual
         
-        
-        first_elements_list = [item[0] for item in failed_sections]
-        # Check if the current class section is in the list of failed sections
-        if course_identifier in first_elements_list or 1==1:
-            # Randomly decide whether to mutate this class section
-            if random.random() < mutation_rate:
-                # Determine the current pattern (MWF or TuTh) of the class
-                current_pattern = 'MWF' if 'M' in cls['timeslot'] or 'W' in cls['timeslot'] or 'F' in cls['timeslot'] else 'TuTh'
-                
-                # Filter timeslots based on the pattern and avoid clashes on the same day
-                available_timeslots = [
-                    ts for ts in full_meeting_times
-                    if ts['days'] in cls['timeslot'] and
-                       ts['days'] not in day_assignment.get(course_identifier, set())
-                ]
+        with open('create_ind.txt', 'a') as log_file:
+            class_groups = group_classes_by_course_identifier(combined_expanded_schedule)
 
-                # If available timeslots are found, choose one randomly
-                if available_timeslots:
-                    chosen_timeslot = random.choice(available_timeslots)
-                    new_class_section['timeslot'] = f"{chosen_timeslot['days']} - {chosen_timeslot['start_time']}"
-                    # Update day assignment for the course
-                    day_assignment.setdefault(course_identifier, set()).add(chosen_timeslot['days'])
+            for course_id, sessions in class_groups.items():
+                log_file.write(f"Processing course ID: {course_id} with sessions: {len(sessions)}\n")
+                print(f"Processing course ID: {course_id} with sessions: {len(sessions)}")
+                # Calculate the total credits for the course
+                total_credits = sum(int(session['minCredit']) for session in sessions)
 
-        # Add the class section to the individual schedule regardless of mutation
-        individual.append(new_class_section)
+                for session in sessions:
+                    print(f"Original session: {session}")
+                    
+                    mutation_condition = course_id in [item[0] for item in failed_sections] or random.random() < mutation_rate
 
-    return creator.Individual(individual)
+                    if mutation_condition:
+                        # Determine the pattern based on the total credits and session information
+                        if len(sessions) == 3 or (len(sessions) == 4):
+                            #pattern = determine_original_pattern(sessions, 4)
+                            class_pattern = determine_original_pattern(sessions)
+                            log_file.write(f"Class pattern for {course_id}: {class_pattern}\n")
+                            print(f"Class pattern for {course_id}: {class_pattern}")
+                            # Create sessions based on the determined pattern
+                            if class_pattern == "MWF":
+                                # For an MWF pattern, create three sessions: one for each day
+                                for day in ['M', 'W', 'F']:
+                                    session_copy = session.copy()
+                                    # Assign the session to one of the MWF days - this will assign the same start time for M, W, and F
+                                    days, start_time = assign_timeslot(session, "MWF")  # We use "_" as we're not using the 'days' return value here
+                                    if days is None or start_time is None:
+                                        print(f"No valid timeslot found for session: {session['section']} on day: {day}")
+                                        individual.append(session_copy)
+                                        continue
+                                    print(f"Mutated session: {session_copy}")
+                                    session_copy['timeslot'] = f"{day} - {start_time}"  # Assign each session to a different day
+                                    log_file.write(f"Mutated session: {session_copy}\n")
+                                    individual.append(session_copy)
+                            elif class_pattern == "TuTh":
+                                # For a TuTh pattern, create two sessions: one for Tuesday and one for Thursday
+                                for day in ['Tu', 'Th']:
+                                    session_copy = session.copy()
+                                    # Assign the session to one of the TuTh days - this will assign the same start time for Tu and Th
+                                    days, start_time = assign_timeslot(session_copy, "TuTh")  # We use "_" as we're not using the 'days' return value here
+                                    if days is None or start_time is None:
+                                        print(f"No valid timeslot found for session: {session['section']} on day: {day}")
+                                        individual.append(session_copy)
+                                        continue  # Skip this session if no valid timeslot is found
+                                    session_copy['timeslot'] = f"{day} - {start_time}"  # Assign each session to a different day
+                                    print(f"Mutated session: {session_copy}")
+                                    log_file.write(f"Mutated session: {session_copy}\n")
+                                    individual.append(session_copy)
+                                    print(f"Assigned {session_copy['section']} to timeslot: {session_copy['timeslot']}")
+
+                            
+                        if len(sessions) == 1 or (len(sessions) == 4 ):
+                            # One credit section
+                            session_copy = session.copy()
+                            days, start_time = assign_timeslot(session_copy, "All")
+                            log_file.write(f"Mutated session: {session_copy}\n")
+                            session_copy['timeslot'] = f"{days} - {start_time}"
+                            individual.append(session_copy)
+                    else:
+                        individual.append(session.copy())
+                        log_file.write(f"Keep session: {session}\n")
+
+            # Create the DEAP individual with the newly formed schedule
+            new_individual = creator.Individual(individual)
+            new_individual.label = individual_label
+            return new_individual
+
+    except Exception as e:
+        print(f"An error occurred in create_individual: {e}")
+        # Handle the error or raise it
+        raise e
+
+
 
 
 
@@ -627,6 +710,7 @@ def group_and_update_schedule(schedule_info_list):
         updated_schedules_list.append({
             'schedule': updated_schedule,
             'score': schedule_info['score'],
+            'label': schedule_info['label'] if 'label' in schedule_info else 'na',
             'student_conflicts': schedule_info['student_conflicts'],  # include details if present
             'algorithm': schedule_info['algorithm'],
             'slot_differences': schedule_info['slot_differences'],
@@ -1490,12 +1574,12 @@ def is_valid_individual(individual):
     for cls in individual:
         # Check if the class timeslot is valid
         if cls['timeslot'] not in valid_timeslots:
-            failure_sections.append((cls['section'],"invalid timeslot"),cls)  # Use full section name
+            failure_sections.append(((cls['section'], "invalid timeslot"), cls))  # Note the double parentheses
 
         # Check for multiple timeslot assignments on the same day for each section
         day = cls['timeslot'].split(' - ')[0]
         if day in section_day_assignments.get(cls['section'], set()):  # Use full section name
-            failure_sections.append((cls['section'], "multiple timeslots on same day",cls))
+            failure_sections.append(((cls['section'], "multiple timeslots on same day"), cls))  # Note the double parentheses
         section_day_assignments.setdefault(cls['section'], set()).add(day)
         full_room = cls.get('bldg','') + ' ' + cls['room']
         # Check for room and instructor conflicts
@@ -1836,51 +1920,122 @@ def validate_csv_for_class_section(csv_data):
     return "CSV data is valid for ClassSection.", True
 
 
-import random
 
 import random
-
-import random
-
-def custom_mutate(individual, mutpb):
+def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
     full_meeting_times = create_full_meeting_times()
+    class_groups = {}
 
-    for i in range(len(individual)):
-        class_section = individual[i]
-        if random.random() < mutpb:  # Mutation probability check
-            minCredit = int(class_section['minCredit'])
-            
-            # For 1-credit classes, pick any available timeslot
-            if minCredit == 1:
-                new_timeslot = random.choice(full_meeting_times)
-                class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
-            else:
-                # Determine the current pattern of the class
-                is_mwf = 'M' in class_section['timeslot'] and 'W' in class_section['timeslot'] and 'F' in class_section['timeslot']
-                is_tuth = 'Tu' in class_section['timeslot'] and 'Th' in class_section['timeslot']
+    with open(log_filename, "a") as log_file:
+        individual_label = individual.label if hasattr(individual, 'label') else 'Unknown'
+        log_file.write(f"\n--- Mutating Individual: {individual_label} ---\n")
+        # Group sessions by course identifier.
+        for session in individual:
+            course_identifier = session['section'].split('-')[0] + '-' + session['section'].split('-')[1]
+            class_groups.setdefault(course_identifier, []).append(session)
 
-                # Decide whether to mutate within the same pattern or switch patterns
-                if random.random() < 0.5:  # Stay within the same pattern
-                    if is_mwf:
-                        mwf_timeslots = [ts for ts in full_meeting_times if 'M' in ts['days'] and 'W' in ts['days'] and 'F' in ts['days']]
-                        new_timeslot = random.choice(mwf_timeslots)
-                        class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
-                    elif is_tuth:
-                        tuth_timeslots = [ts for ts in full_meeting_times if 'Tu' in ts['days'] and 'Th' in ts['days']]
-                        new_timeslot = random.choice(tuth_timeslots)
-                        class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
+        for course_id, sessions in class_groups.items():
+            if random.random() < mutpb:
+                log_file.write(f"\n--- Mutating group: {course_id} in Individual: {individual_label} ---\n")
+                minCredit = int(sessions[0]['minCredit'])
 
-                else:  # Switch pattern
-                    if is_mwf:
-                        tuth_timeslots = [ts for ts in full_meeting_times if 'Tu' in ts['days'] and 'Th' in ts['days']]
-                        new_timeslot = random.choice(tuth_timeslots)
-                        class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
-                    elif is_tuth:
-                        mwf_timeslots = [ts for ts in full_meeting_times if 'M' in ts['days'] and 'W' in ts['days'] and 'F' in ts['days']]
-                        new_timeslot = random.choice(mwf_timeslots)
-                        class_section['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
+                if minCredit == 1:
+                    continue
+                    for session in sessions:
+                        original_timeslot = session['timeslot']
+                        new_timeslot = random.choice(full_meeting_times)
+                        session['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
+                        log_file.write(f"Mutated 1-credit class {session['section']} from {original_timeslot} to {session['timeslot']}\n")
+                else:
+                    if random.choice([True, False]):
+                        # SWITCH PATTERN
+                        # Determine the original and new pattern.
+                        continue
+                        is_original_mwf = all(any(day in session['timeslot'].split(' - ')[0] for session in sessions) for day in ['M', 'W', 'F'])
+                        original_pattern = "MWF" if is_original_mwf else "TuTh"
+                        new_days = ['Tu', 'Th'] if is_original_mwf else ['M', 'W', 'F']
+                        new_pattern = "TuTh" if is_original_mwf else "MWF"
+                        
+                        # Choose a new consistent time for the new pattern
+                        new_times = [ts for ts in full_meeting_times if ts['days'] in new_days]
+                        new_start_times = set(ts['start_time'] for ts in new_times)
+                        chosen_start_time = random.choice(list(new_start_times))
+
+                        # When switching to TuTh, assign one session to Tuesday and another to Thursday
+                        if new_pattern == "TuTh":
+                            # Assign the first session to Tuesday and the second to Thursday
+                            if len(sessions) >= 2:
+                                sessions[0]['timeslot'] = f"Tu - {chosen_start_time}"
+                                log_file.write(f"Assigned {sessions[0]['section']} to Tu at {chosen_start_time}, in Individual: {individual_label}\n")
+                                
+                                sessions[1]['timeslot'] = f"Th - {chosen_start_time}"
+                                log_file.write(f"Assigned {sessions[1]['section']} to Th at {chosen_start_time}, in Individual: {individual_label}\n")
+                                
+                                # If there's a third session (for 3-credit classes originally on MWF), it needs to be removed or reassigned
+                                # This code assumes you want to remove it. If you need to reassign it, you'll need to modify this part.
+                                if len(sessions) > 2:
+                                    log_file.write(f"Removed extra session for {sessions[2]['section']}, in Individual: {individual_label}\n")
+                                    del sessions[2]  # Removing the third session
+                              
+                            if sessions[0]['minCredit'] == 4:
+                                # Add an additional session for 4-credit classes, selected randomly from the full set
+                                additional_session = sessions[2]  # Third session for 4-credit class
+                                random_timeslot = random.choice(full_meeting_times)
+                                additional_session['timeslot'] = f"{random_timeslot['days']} - {random_timeslot['start_time']}"
+                                log_file.write(f"Added additional session for 4-credit class {additional_session['section']} to {random_timeslot['days']} at {random_timeslot['start_time']}, in Individual: {individual_label}\n")
+                  
+                        # When switching to MWF, distribute sessions across Monday, Wednesday, and Friday
+                        elif new_pattern == "MWF":
+                            mwf_days = ['M', 'W', 'F']
+                            
+                            # Check if we need to add an extra session for the switch to MWF
+                            if len(sessions) < len(mwf_days):
+                                # Create a new session similar to the existing ones but for the additional day
+                                new_session = sessions[0].copy()
+                                new_session['timeslot'] = f"{mwf_days[len(sessions)]} - {chosen_start_time}"
+                                sessions.append(new_session)  # Add the new session to the list
+                                log_file.write(f"Added new session for {new_session['section']} to {new_session['timeslot']}, in Individual: {individual_label}\n")
+                            
+                            # Now assign each session to a day in MWF
+                            for i, day in enumerate(mwf_days):
+                                sessions[i]['timeslot'] = f"{day} - {chosen_start_time}"
+                                log_file.write(f"Assigned {sessions[i]['section']} to {day} at {chosen_start_time}, in Individual: {individual_label}\n")
+                                                    
+                            if sessions[0]['minCredit'] == 4:
+                                # Add an additional session for 4-credit classes, selected randomly from the full set
+                                additional_session = sessions[2]  # Third session for 4-credit class
+                                random_timeslot = random.choice(full_meeting_times)
+                                additional_session['timeslot'] = f"{random_timeslot['days']} - {random_timeslot['start_time']}"
+                                log_file.write(f"Added additional session for 4-credit class {additional_session['section']} to {random_timeslot['days']} at {random_timeslot['start_time']}, in Individual: {individual_label}\n")
+                                                                                            
+
+                        for session in sessions:
+                            log_file.write(f"Switched pattern for {session['section']} from {original_pattern} to {new_pattern}, new timeslot: {session['timeslot']}, in Individual: {individual_label}\n")
+
+                    else:
+                        #change time only within a pattern
+                        continue
+                        new_timeslot = random.choice([ts for ts in full_meeting_times if ts['days'] in sessions[0]['timeslot']])
+                        for session in sessions:
+                            original_timeslot = session['timeslot']
+                            session['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
+                            log_file.write(f"Changed time within the same pattern for {session['section']} from {original_timeslot} to {session['timeslot']}, in Individual: {individual_label}\n")
 
     return individual,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1924,55 +2079,66 @@ def preprocess_input_data(class_sections):
 
 
 
-def custom_crossover(ind1, ind2):
+import random
+
+def custom_crossover(ind1, ind2, log_filename="crossover_log.txt"):
+    # Assuming ind1 and ind2 have a label property for logging purposes
+    label1 = ind1.label if hasattr(ind1, 'label') else 'Unknown1'
+    label2 = ind2.label if hasattr(ind2, 'label') else 'Unknown2'
+
     full_meeting_times = create_full_meeting_times()
 
     # Group classes by pattern
     mwf1, tuth1, other1 = group_by_pattern(ind1)
     mwf2, tuth2, other2 = group_by_pattern(ind2)
 
-    # Randomly select crossover points for MWF and TuTh patterns
-    crossover_point_mwf = random.randint(1, min(len(mwf1), len(mwf2)) - 1)
-    crossover_point_tuth = random.randint(1, min(len(tuth1), len(tuth2)) - 1)
+    with open(log_filename, "a") as log_file:
+        # Randomly select crossover points for MWF and TuTh patterns
+        crossover_point_mwf = random.randint(1, min(len(mwf1), len(mwf2)) - 1)
+        crossover_point_tuth = random.randint(1, min(len(tuth1), len(tuth2)) - 1)
 
-    # Swap MWF sections if it results in valid schedules
-    mwf1_new = mwf1[:crossover_point_mwf] + mwf2[crossover_point_mwf:]
-    mwf2_new = mwf2[:crossover_point_mwf] + mwf1[crossover_point_mwf:]
-    if is_valid_individual(mwf1_new + tuth1 + other1)[0] and is_valid_individual(mwf2_new + tuth2 + other2)[0]:
-        mwf1, mwf2 = mwf1_new, mwf2_new
+        # Attempt to swap MWF sections
+        mwf1_new = mwf1[:crossover_point_mwf] + mwf2[crossover_point_mwf:]
+        mwf2_new = mwf2[:crossover_point_mwf] + mwf1[crossover_point_mwf:]
+        if not is_valid_individual(mwf1_new + tuth1 + other1) and not is_valid_individual(mwf2_new + tuth2 + other2):
+            mwf1, mwf2 = mwf1_new, mwf2_new
+            log_file.write(f"Swapped MWF sections between {label1} and {label2} at point {crossover_point_mwf}\n")
 
-    # Swap TuTh sections if it results in valid schedules
-    tuth1_new = tuth1[:crossover_point_tuth] + tuth2[crossover_point_tuth:]
-    tuth2_new = tuth2[:crossover_point_tuth] + tuth1[crossover_point_tuth:]
-    if is_valid_individual(mwf1 + tuth1_new + other1)[0] and is_valid_individual(mwf2 + tuth2_new + other2)[0]:
-        tuth1, tuth2 = tuth1_new, tuth2_new
+        # Attempt to swap TuTh sections
+        tuth1_new = tuth1[:crossover_point_tuth] + tuth2[crossover_point_tuth:]
+        tuth2_new = tuth2[:crossover_point_tuth] + tuth1[crossover_point_tuth:]
+        if not is_valid_individual(mwf1 + tuth1_new + other1) and not is_valid_individual(mwf2 + tuth2_new + other2):
+            tuth1, tuth2 = tuth1_new, tuth2_new
+            log_file.write(f"Swapped TuTh sections between {label1} and {label2} at point {crossover_point_tuth}\n")
 
-    # Swap other classes if it results in valid schedules
-    crossover_point_other = random.randint(1, len(other1))
-    other1_new = other1[:crossover_point_other] + other2[crossover_point_other:]
-    other2_new = other2[:crossover_point_other] + other1[crossover_point_other:]
-    if is_valid_individual(mwf1 + tuth1 + other1_new)[0] and is_valid_individual(mwf2 + tuth2 + other2_new)[0]:
-        other1, other2 = other1_new, other2_new
+        # Attempt to swap other classes
+        crossover_point_other = random.randint(1, len(other1))
+        other1_new = other1[:crossover_point_other] + other2[crossover_point_other:]
+        other2_new = other2[:crossover_point_other] + other1[crossover_point_other:]
+        if not is_valid_individual(mwf1 + tuth1 + other1_new) and not is_valid_individual(mwf2 + tuth2 + other2_new):
+            other1, other2 = other1_new, other2_new
+            log_file.write(f"Swapped other sections between {label1} and {label2} at point {crossover_point_other}\n")
 
-    # Reconstruct ind1 and ind2 from the modified groups
-    ind1_new = mwf1 + tuth1 + other1
-    ind2_new = mwf2 + tuth2 + other2
+        # Reconstruct ind1 and ind2 from the modified groups
+        ind1_new = mwf1 + tuth1 + other1
+        ind2_new = mwf2 + tuth2 + other2
 
-    # Invalidate the fitness of the modified individuals
-    del ind1.fitness.values
-    del ind2.fitness.values
+        # Invalidate the fitness of the modified individuals
+        del ind1.fitness.values
+        del ind2.fitness.values
 
-    # Update the individuals only if the new combinations are valid
-    ind1[:] = ind1_new
-    ind2[:] = ind2_new
+        # Update the individuals only if the new combinations are valid
+        ind1[:] = ind1_new
+        ind2[:] = ind2_new
 
     return ind1, ind2
 
 
 
+
 # Assuming create_individual, create_full_meeting_times, custom_crossover, evaluateSchedule, and divide_schedules_by_credit are defined elsewhere
 
-def run_genetic_algorithm(combined_expanded_schedule, report, ngen=30, pop_size=50, cxpb=0.3, mutpb=0.2):
+def run_genetic_algorithm(combined_expanded_schedule, report, ngen=50, pop_size=50, cxpb=0.3, mutpb=0.5):
     try:
         # Create necessary data
         full_meeting_times_data = create_full_meeting_times()
@@ -2094,6 +2260,9 @@ def optimize():
         global_settings['blocked_slot_penalty'] = data.get('blockedSlotPenalty', 0)
         global_settings['hold_penalty'] = data.get('holdPenalty', 0)
         
+        #Initialize full meeting times and store in global settings
+        global_settings['full_meeting_times'] = create_full_meeting_times()
+        
         
         message, is_valid = validate_csv_for_class_section(global_settings['class_sections_data'])
         
@@ -2150,6 +2319,7 @@ def optimize():
         all_schedules = [{
             'schedule': combined_expanded_schedule,
             'score': pulp_score,
+            'label':'pulp',
             'student_conflicts': student_conflicts,
             'algorithm': 'PuLP',
             'calendar_events': calendar_events,
@@ -2165,7 +2335,7 @@ def optimize():
             # Split schedules by credit
             three_credit_classes, remaining_classes = divide_schedules_by_credit(ga_schedule[0])
 
-            if  is_valid_individual(ga_schedule[0]):
+            if not is_valid_individual(ga_schedule[0]) or 1==1 :
                 # Prepare the three-credit class results in the required format for processing calendar events
                 three_credit_results_formatted = {
                     'message': 'Optimization complete',
@@ -2189,6 +2359,7 @@ def optimize():
                     'schedule': ga_schedule[0],
                     'score': ga_schedule[1],
                     'algorithm': 'GA',
+                    'label':ga_schedule[0].label,
                     'student_conflicts':ga_res['total_unwanted_timeslot_violations'],
                     'calendar_events': calendar_events_ga,  # GA calendar events
                     'slot_differences': 0  # Assuming ga_schedule[2] holds slot differences
