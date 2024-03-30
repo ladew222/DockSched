@@ -68,14 +68,24 @@ def group_classes_by_course_identifier(schedule):
     return class_groups
 
 def determine_original_pattern(sessions):
-    # Check if all sessions are on M, W, or F, which indicates an MWF pattern
-    is_original_mwf = all(any(day in session['timeslot'].split(' - ')[0] for day in ['M', 'W', 'F']) for session in sessions)
-    
-    # Return "MWF" if true, otherwise return "TuTh"
-    return "MWF" if is_original_mwf else "TuTh"
+    # Check the days of the first two sessions to determine the pattern
+    if len(sessions) >= 2:
+        first_day = sessions[0]['timeslot'].split(' - ')[0]
+        second_day = sessions[1]['timeslot'].split(' - ')[0]
+        
+        # If both days are either M, W, or F, it's MWF; otherwise, it's assumed to be TuTh
+        if first_day in ['M', 'W', 'F'] and second_day in ['M', 'W', 'F']:
+            return "MWF"
+        else:
+            return "TuTh"
+    else:
+        # If there's only one session, default to MWF or another logic could be applied
+        return "MWF"
 
 
-def assign_timeslot(session, pattern):
+
+
+def assign_timeslot(pattern):
     # Access full_meeting_times from global_settings
     full_meeting_times = global_settings.get('full_meeting_times', [])
 
@@ -115,65 +125,64 @@ def create_individual(failed_sections, combined_expanded_schedule, mutation_rate
                 # Calculate the total credits for the course
                 total_credits = sum(int(session['minCredit']) for session in sessions)
 
-                for session in sessions:
-                    print(f"Original session: {session}")
-                    
-                    mutation_condition = course_id in [item[0] for item in failed_sections] or random.random() < mutation_rate
+                
+                mutation_condition = course_id in [item[0] for item in failed_sections] or random.random() < mutation_rate
 
-                    if mutation_condition:
-                        # Determine the pattern based on the total credits and session information
-                        if len(sessions) == 3 or (len(sessions) == 4):
-                            #pattern = determine_original_pattern(sessions, 4)
-                            class_pattern = determine_original_pattern(sessions)
-                            log_file.write(f"Class pattern for {course_id}: {class_pattern}\n")
-                            print(f"Class pattern for {course_id}: {class_pattern}")
-                            # Create sessions based on the determined pattern
-                            if class_pattern == "MWF":
-                                # For an MWF pattern, create three sessions: one for each day
-                                for day in ['M', 'W', 'F']:
-                                    session_copy = session.copy()
-                                    # Assign the session to one of the MWF days - this will assign the same start time for M, W, and F
-                                    days, start_time = assign_timeslot(session, "MWF")  # We use "_" as we're not using the 'days' return value here
-                                    if days is None or start_time is None:
-                                        print(f"No valid timeslot found for session: {session['section']} on day: {day}")
-                                        individual.append(session_copy)
-                                        continue
-                                    print(f"Mutated session: {session_copy}")
-                                    session_copy['timeslot'] = f"{day} - {start_time}"  # Assign each session to a different day
-                                    log_file.write(f"Mutated session: {session_copy}\n")
+                if mutation_condition and 1==3:
+                    # Determine the pattern based on the total credits and session information
+                    if len(sessions) >= 3 and int(sessions[0]['minCredit'])>= 3:
+                        #pattern = determine_original_pattern(sessions, 4)
+                        class_pattern = determine_original_pattern(sessions)
+                        log_file.write(f"Class pattern for {course_id}: {class_pattern}\n")
+                        print(f"Class pattern for {course_id}: {class_pattern}")
+                        # Create sessions based on the determined pattern
+                        if class_pattern == "MWF":
+                            # For an MWF pattern, create three sessions: one for each day
+                            days, start_time = assign_timeslot("MWF")  # We use "_" as we're not using the 'days' return value here
+                            for day in ['M', 'W', 'F']:
+                                session_copy = sessions[0].copy()
+                                # Assign the session to one of the MWF days - this will assign the same start time for M, W, and F
+                                if days is None or start_time is None:
+                                    print(f"No valid timeslot found for session: {sessions[0]['section']} on day: {day}")
                                     individual.append(session_copy)
-                            elif class_pattern == "TuTh":
-                                # For a TuTh pattern, create two sessions: one for Tuesday and one for Thursday
-                                for day in ['Tu', 'Th']:
-                                    session_copy = session.copy()
-                                    # Assign the session to one of the TuTh days - this will assign the same start time for Tu and Th
-                                    days, start_time = assign_timeslot(session_copy, "TuTh")  # We use "_" as we're not using the 'days' return value here
-                                    if days is None or start_time is None:
-                                        print(f"No valid timeslot found for session: {session['section']} on day: {day}")
-                                        individual.append(session_copy)
-                                        continue  # Skip this session if no valid timeslot is found
-                                    session_copy['timeslot'] = f"{day} - {start_time}"  # Assign each session to a different day
-                                    print(f"Mutated session: {session_copy}")
-                                    log_file.write(f"Mutated session: {session_copy}\n")
+                                    continue
+                                print(f"Mutated session: {session_copy}")
+                                session_copy['timeslot'] = f"{day} - {start_time}"  # Assign each session to a different day
+                                log_file.write(f"Mutated session: {session_copy}\n")
+                                individual.append(session_copy)
+                        elif class_pattern == "TuTh":
+                            # For a TuTh pattern, create two sessions: one for Tuesday and one for Thursday
+                            days, start_time = assign_timeslot("TuTh") 
+                            for day in ['Tu', 'Th']:
+                                session_copy = sessions[0].copy()
+                                # Assign the session to one of the TuTh days - this will assign the same start time for Tu and Th
+                                if days is None or start_time is None:
+                                    print(f"No valid timeslot found for session: {sessions[0]['section']} on day: {day}")
                                     individual.append(session_copy)
-                                    print(f"Assigned {session_copy['section']} to timeslot: {session_copy['timeslot']}")
+                                    continue  # Skip this session if no valid timeslot is found
+                                session_copy['timeslot'] = f"{day} - {start_time}"  # Assign each session to a different day
+                                print(f"Mutated session: {session_copy}")
+                                log_file.write(f"Mutated session: {session_copy}\n")
+                                individual.append(session_copy)
+                                print(f"Assigned {session_copy['section']} to timeslot: {session_copy['timeslot']}")
 
-                            
-                        if len(sessions) == 1 or (len(sessions) == 4 ):
-                            # One credit section
-                            session_copy = session.copy()
-                            days, start_time = assign_timeslot(session_copy, "All")
-                            log_file.write(f"Mutated session: {session_copy}\n")
-                            session_copy['timeslot'] = f"{days} - {start_time}"
-                            individual.append(session_copy)
-                    else:
+                        
+                    if len(sessions) == 1 or ((len(sessions) >= 3 and sessions[0]['minCredit'] == '4')):
+                        # One credit section or fouth credit section
+                        session_copy = sessions[0].copy()
+                        days, start_time = assign_timeslot("All")
+                        log_file.write(f"Mutated session: {session_copy}\n")
+                        session_copy['timeslot'] = f"{days} - {start_time}"
+                        individual.append(session_copy)
+                else:
+                    for session in sessions:
                         individual.append(session.copy())
                         log_file.write(f"Keep session: {session}\n")
-
-            # Create the DEAP individual with the newly formed schedule
-            new_individual = creator.Individual(individual)
-            new_individual.label = individual_label
-            return new_individual
+                        print(f"Keep session: {session}")
+        # Create the DEAP individual with the newly formed schedule
+        new_individual = creator.Individual(individual)
+        new_individual.label = individual_label
+        return new_individual
 
     except Exception as e:
         print(f"An error occurred in create_individual: {e}")
@@ -695,6 +704,7 @@ def group_and_update_schedule(schedule_info_list):
         individual_schedule = schedule_info['schedule']
 
         # Divide each schedule into groups of 3-credit and remaining classes
+        #problem here
         three_credit_classes, remaining_classes = divide_schedules_by_credit(individual_schedule)
 
         # Group 3-credit classes based on common time patterns
@@ -723,16 +733,48 @@ def group_and_update_schedule(schedule_info_list):
 
 
 
+from collections import Counter
+
 def get_most_common_start_times(sections):
     # Separate MWF and TuTh timeslots
     mwf_start_times = [cls['timeslot'].split(' - ')[1] for cls in sections if 'M' in cls['timeslot'] or 'W' in cls['timeslot'] or 'F' in cls['timeslot']]
     tuth_start_times = [cls['timeslot'].split(' - ')[1] for cls in sections if 'Tu' in cls['timeslot'] or 'Th' in cls['timeslot']]
 
-    # Find the most common start times
-    most_common_mwf_time = Counter(mwf_start_times).most_common(1)[0][0] if mwf_start_times else None
-    most_common_tuth_time = Counter(tuth_start_times).most_common(1)[0][0] if tuth_start_times else None
+    # Determine the pattern based on which list has entries
+    if mwf_start_times:
+        # Return the most common MWF time if MWF times are found
+        most_common_mwf_time = Counter(mwf_start_times).most_common(1)[0][0]
+        return most_common_mwf_time, None  # Return None for TuTh
+    elif tuth_start_times:
+        # Return the most common TuTh time if TuTh times are found
+        most_common_tuth_time = Counter(tuth_start_times).most_common(1)[0][0]
+        return None, most_common_tuth_time  # Return None for MWF
+    
+    # Return None for both if no sections are found
+    return None, None
 
-    return most_common_mwf_time, most_common_tuth_time
+
+def determine_class_pattern_from_two_sessions(sections):
+    if len(sections) < 2:
+        return "Unknown"  # Return "Unknown" if there aren't enough sessions to determine a pattern
+    
+    # Extract the days from the first two sessions' timeslots
+    first_day = sections[0]['timeslot'].split(' - ')[0]
+    second_day = sections[1]['timeslot'].split(' - ')[0]
+    
+    # Determine the pattern based on the days
+    if 'M' in first_day or 'W' in first_day or 'F' in first_day:
+        if 'Tu' in second_day or 'Th' in second_day:
+            # If the days are mixed (unlikely but just in case), return "Mixed"
+            return "Mixed"
+        # If the first two days are among M, W, F, it's an MWF pattern
+        return "MWF"
+    elif 'Tu' in first_day and 'Th' in second_day:
+        # If the first day is Tuesday and the second is Thursday, it's a TuTh pattern
+        return "TuTh"
+    
+    # Return "Unknown" if the pattern doesn't match expected values
+    return "Unknown"
 
 
 
@@ -1320,21 +1362,21 @@ def combine_and_expand_schedule(three_credit_results, remaining_class_results, m
         cls = next((c for c in class_sections if c.section == base_section_name), None)
         
         # Check if a corresponding class section was found
-        if cls:
-            # Append the formatted class section to 'combined_schedule'
-            combined_schedule.append({
-                'section': section_name,  # Use the original section name including '_one_credit' if applicable
-                'timeslot': result['timeslot'],
-                'faculty1': cls.faculty1,
-                'room': cls.room,
-                'minCredit': cls.minCredit,
-                'unwanted_timeslots': cls.unwanted_timeslots,
-                'hold_value': cls.holdValue,
-                'secCap': cls.secCap,
-                'bldg': cls.bldg,
-                'avoid_classes': cls.avoid_classes,
-                'hold_value': cls.holdValue
-            })
+        #if cls:
+        # Append the formatted class section to 'combined_schedule'
+        combined_schedule.append({
+            'section': section_name,  # Use the original section name including '_one_credit' if applicable
+            'timeslot': result['timeslot'],
+            'faculty1': cls.faculty1,
+            'room': cls.room,
+            'minCredit': cls.minCredit,
+            'unwanted_timeslots': cls.unwanted_timeslots,
+            'hold_value': cls.holdValue,
+            'secCap': cls.secCap,
+            'bldg': cls.bldg,
+            'avoid_classes': cls.avoid_classes,
+            'hold_value': cls.holdValue
+        })
 
 
 
@@ -2025,20 +2067,6 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 from datetime import datetime
 
 def preprocess_input_data(class_sections):
@@ -2414,7 +2442,7 @@ def divide_schedules_by_credit(schedule, credit_threshold=3):
     for base_section_name, sections in section_groupings.items():
         if any(int(cls['minCredit']) >= credit_threshold for cls in sections):
             mwf_time, tuth_time = get_most_common_start_times(sections)
-            if mwf_time:
+            if determine_class_pattern_from_two_sessions(sections) == 'MWF':
                 mwf_sections = [cls for cls in sections if 'M' in cls['timeslot'] or 'W' in cls['timeslot'] or 'F' in cls['timeslot']]
                 if mwf_sections:
                     three_credit_classes.append({
@@ -2427,17 +2455,18 @@ def divide_schedules_by_credit(schedule, credit_threshold=3):
                         'secCap': mwf_sections[0]['secCap']
                     })
             if tuth_time:
-                tuth_sections = [cls for cls in sections if 'Tu' in cls['timeslot'] or 'Th' in cls['timeslot']]
-                if tuth_sections:
-                    three_credit_classes.append({
-                        'section': base_section_name,
-                        'timeslot': 'Tu Th - ' + tuth_time,
-                        'minCredit': tuth_sections[0]['minCredit'],
-                        'faculty1': mwf_sections[0]['faculty1'],
-                        'room': mwf_sections[0]['room'],
-                        'bldg': mwf_sections[0]['bldg'],
-                        'secCap': mwf_sections[0]['secCap']
-                    })
+                if determine_class_pattern_from_two_sessions(sections) == 'TuTh':
+                    tuth_sections = [cls for cls in sections if 'Tu' in cls['timeslot'] or 'Th' in cls['timeslot']]
+                    if tuth_sections:
+                        three_credit_classes.append({
+                            'section': base_section_name,
+                            'timeslot': 'Tu Th - ' + tuth_time,
+                            'minCredit': tuth_sections[0]['minCredit'],
+                            'faculty1': mwf_sections[0]['faculty1'],
+                            'room': mwf_sections[0]['room'],
+                            'bldg': mwf_sections[0]['bldg'],
+                            'secCap': mwf_sections[0]['secCap']
+                        })
         else:
             remaining_classes.extend(sections)
 
