@@ -128,7 +128,7 @@ def create_individual(failed_sections, combined_expanded_schedule, mutation_rate
                 
                 mutation_condition = course_id in [item[0] for item in failed_sections] or random.random() < mutation_rate
 
-                if mutation_condition and 1==3:
+                if mutation_condition:
                     # Determine the pattern based on the total credits and session information
                     if len(sessions) >= 3 and int(sessions[0]['minCredit'])>= 3:
                         #pattern = determine_original_pattern(sessions, 4)
@@ -1982,7 +1982,7 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
                 minCredit = int(sessions[0]['minCredit'])
 
                 if minCredit == 1:
-                    continue
+                    #continue
                     for session in sessions:
                         original_timeslot = session['timeslot']
                         new_timeslot = random.choice(full_meeting_times)
@@ -1992,26 +1992,21 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
                     if random.choice([True, False]):
                         # SWITCH PATTERN
                         # Determine the original and new pattern.
-                        continue
-                        is_original_mwf = all(any(day in session['timeslot'].split(' - ')[0] for session in sessions) for day in ['M', 'W', 'F'])
-                        original_pattern = "MWF" if is_original_mwf else "TuTh"
-                        new_days = ['Tu', 'Th'] if is_original_mwf else ['M', 'W', 'F']
-                        new_pattern = "TuTh" if is_original_mwf else "MWF"
+                        #continue
+                        class_pattern = determine_original_pattern(sessions)
+                        new_pattern = "TuTh" if class_pattern == "MWF" else "MWF"
                         
-                        # Choose a new consistent time for the new pattern
-                        new_times = [ts for ts in full_meeting_times if ts['days'] in new_days]
-                        new_start_times = set(ts['start_time'] for ts in new_times)
-                        chosen_start_time = random.choice(list(new_start_times))
-
+    
                         # When switching to TuTh, assign one session to Tuesday and another to Thursday
                         if new_pattern == "TuTh":
+                            days, start_time = assign_timeslot("TuTh") 
                             # Assign the first session to Tuesday and the second to Thursday
                             if len(sessions) >= 2:
-                                sessions[0]['timeslot'] = f"Tu - {chosen_start_time}"
-                                log_file.write(f"Assigned {sessions[0]['section']} to Tu at {chosen_start_time}, in Individual: {individual_label}\n")
+                                sessions[0]['timeslot'] = f"Tu - {start_time}"
+                                log_file.write(f"Assigned {sessions[0]['section']} to Tu at {start_time}, in Individual: {individual_label}\n")
                                 
-                                sessions[1]['timeslot'] = f"Th - {chosen_start_time}"
-                                log_file.write(f"Assigned {sessions[1]['section']} to Th at {chosen_start_time}, in Individual: {individual_label}\n")
+                                sessions[1]['timeslot'] = f"Th - {start_time}"
+                                log_file.write(f"Assigned {sessions[1]['section']} to Th at {start_time}, in Individual: {individual_label}\n")
                                 
                                 # If there's a third session (for 3-credit classes originally on MWF), it needs to be removed or reassigned
                                 # This code assumes you want to remove it. If you need to reassign it, you'll need to modify this part.
@@ -2022,32 +2017,32 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
                             if sessions[0]['minCredit'] == 4:
                                 # Add an additional session for 4-credit classes, selected randomly from the full set
                                 additional_session = sessions[2]  # Third session for 4-credit class
-                                random_timeslot = random.choice(full_meeting_times)
-                                additional_session['timeslot'] = f"{random_timeslot['days']} - {random_timeslot['start_time']}"
+                                days, start_time = assign_timeslot("all") 
+                                additional_session['timeslot'] = f"{days} - {start_time}"
                                 log_file.write(f"Added additional session for 4-credit class {additional_session['section']} to {random_timeslot['days']} at {random_timeslot['start_time']}, in Individual: {individual_label}\n")
                   
                         # When switching to MWF, distribute sessions across Monday, Wednesday, and Friday
                         elif new_pattern == "MWF":
                             mwf_days = ['M', 'W', 'F']
-                            
+                            days, start_time = assign_timeslot("MWF") 
                             # Check if we need to add an extra session for the switch to MWF
                             if len(sessions) < len(mwf_days):
                                 # Create a new session similar to the existing ones but for the additional day
                                 new_session = sessions[0].copy()
-                                new_session['timeslot'] = f"{mwf_days[len(sessions)]} - {chosen_start_time}"
+                                new_session['timeslot'] = f"{mwf_days[len(sessions)]} - {start_time}"
                                 sessions.append(new_session)  # Add the new session to the list
                                 log_file.write(f"Added new session for {new_session['section']} to {new_session['timeslot']}, in Individual: {individual_label}\n")
                             
                             # Now assign each session to a day in MWF
                             for i, day in enumerate(mwf_days):
-                                sessions[i]['timeslot'] = f"{day} - {chosen_start_time}"
-                                log_file.write(f"Assigned {sessions[i]['section']} to {day} at {chosen_start_time}, in Individual: {individual_label}\n")
+                                sessions[i]['timeslot'] = f"{day} - {start_time}"
+                                log_file.write(f"Assigned {sessions[i]['section']} to {day} at {start_time}, in Individual: {individual_label}\n")
                                                     
                             if sessions[0]['minCredit'] == 4:
                                 # Add an additional session for 4-credit classes, selected randomly from the full set
-                                additional_session = sessions[2]  # Third session for 4-credit class
-                                random_timeslot = random.choice(full_meeting_times)
-                                additional_session['timeslot'] = f"{random_timeslot['days']} - {random_timeslot['start_time']}"
+                                #additional_session = sessions[2]  # Third session for 4-credit class
+                                days, start_time = assign_timeslot("all") 
+                                additional_session['timeslot'] = f"{days} - {start_time}"
                                 log_file.write(f"Added additional session for 4-credit class {additional_session['section']} to {random_timeslot['days']} at {random_timeslot['start_time']}, in Individual: {individual_label}\n")
                                                                                             
 
@@ -2056,11 +2051,12 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
 
                     else:
                         #change time only within a pattern
-                        continue
-                        new_timeslot = random.choice([ts for ts in full_meeting_times if ts['days'] in sessions[0]['timeslot']])
+                        #continue
+                        class_pattern = determine_original_pattern(sessions)
+                        days, start_time = assign_timeslot(class_pattern) 
+                        #new_timeslot = random.choice([ts for ts in full_meeting_times if ts['days'] in sessions[0]['timeslot']])
                         for session in sessions:
-                            original_timeslot = session['timeslot']
-                            session['timeslot'] = f"{new_timeslot['days']} - {new_timeslot['start_time']}"
+                            session['timeslot'] = f"{session['timeslot']['days']} - {start_time}"
                             log_file.write(f"Changed time within the same pattern for {session['section']} from {original_timeslot} to {session['timeslot']}, in Individual: {individual_label}\n")
 
     return individual,
