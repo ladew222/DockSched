@@ -70,13 +70,13 @@ const ResultsTable = ({ results }) => {
         <select onChange={handleSelectChange} value={currentIndex}>
           {results.map((result, index) => (
             <option key={index} value={index}>
-              Result {index + 1} - Score: {result.score}
+              Result {index + 1}  - Score: {result.score}
             </option>
           ))}
         </select>
         {/* Display current result */}
         <div>
-          <h2>Result {currentIndex + 1} - Score: {currentResult.score } - Student Conflicts: {currentResult.student_conflicts}</h2> 
+        <h2 title={currentResult.label}>Result {currentIndex + 1} - Score: {currentResult.score} - Student Conflicts: {currentResult.student_conflicts}</h2>
           <Button onClick={() => handleDownloadCSV(currentResult)}>
             Download CSV for Result {currentIndex + 1}
           </Button>
