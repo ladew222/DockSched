@@ -68,19 +68,33 @@ def group_classes_by_course_identifier(schedule):
     return class_groups
 
 def determine_original_pattern(sessions):
-    # Check the days of the first two sessions to determine the pattern
+    # Ensure there are at least two sessions to compare
     if len(sessions) >= 2:
-        first_day = sessions[0]['timeslot'].split(' - ')[0]
-        second_day = sessions[1]['timeslot'].split(' - ')[0]
-        
-        # If both days are either M, W, or F, it's MWF; otherwise, it's assumed to be TuTh
-        if first_day in ['M', 'W', 'F'] and second_day in ['M', 'W', 'F']:
-            return "MWF"
+        # Check if 'timeslot' key exists and is a string for both sessions
+        if all('timeslot' in session and isinstance(session['timeslot'], str) for session in sessions[:2]):
+            first_day = sessions[0]['timeslot'].split(' - ')[0]
+            second_day = sessions[1]['timeslot'].split(' - ')[0]
+            
+            # Determine the pattern based on the days
+            if first_day in ['M', 'W', 'F'] and second_day in ['M', 'W', 'F']:
+                return "MWF"
+            else:
+                return "TuTh"
         else:
-            return "TuTh"
+            # Handle the case where 'timeslot' is not as expected for either session
+            print("Error: 'timeslot' is not a valid string in one of the first two sessions.")
+            return None  # Or return a default pattern or handle the error as needed
     else:
-        # If there's only one session, default to MWF or another logic could be applied
-        return "MWF"
+        # If there's only one session, check its day or return a default pattern
+        if 'timeslot' in sessions[0] and isinstance(sessions[0]['timeslot'], str):
+            day = sessions[0]['timeslot'].split(' - ')[0]
+            # Apply logic to determine pattern based on the single available day
+            return "MWF" if day in ['M', 'W', 'F'] else "TuTh"
+        else:
+            # Handle the case where 'timeslot' is missing or not a string
+            print("Error: 'timeslot' is missing or not a string in the only session available.")
+            return None  # Or return a default pattern or handle the error as needed
+
 
 
 
@@ -1798,9 +1812,11 @@ def evaluateSchedule(individual):
     pattern_violation_penalty = 300
     mutual_exclusion_penalty = 2
     same_day_penalty = 300
+    distribution_penalty_weight = 100  # Adjust based on desired impact
 
     # Initialize scoring variables
     total_score = 0
+    total_distribution_penalty = 0
     detailed_scores = {}
     class_timings = {}
     class_days = {}
@@ -1930,7 +1946,23 @@ def evaluateSchedule(individual):
                     detailed_scores[section].setdefault('same_day_violation', 0)
                     detailed_scores[section]['same_day_violation'] += same_day_violation
 
-    
+      # Calculate distribution penalty
+    for course, timeslots in class_timings.items():
+        # Example: Count the number of sessions per day for the course
+        day_counts = Counter([ts.split(' - ')[0] for ts in timeslots])
+        
+        # Calculate variance or another measure of uneven distribution
+        day_variance = np.var(list(day_counts.values()))  # Using numpy for variance calculation
+
+        # Apply penalty based on variance - higher variance indicates more uneven distribution
+        distribution_penalty = day_variance * distribution_penalty_weight
+        total_distribution_penalty += distribution_penalty
+
+        # Optionally, log distribution penalty details for each course
+        detailed_scores[course]['distribution_penalty'] = distribution_penalty
+
+    # Include distribution penalty in the total score
+    total_score += total_distribution_penalty
     
     return {'total_score': total_score,
             'detailed_scores': detailed_scores,
@@ -1990,6 +2022,9 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
                         log_file.write(f"Mutated 1-credit class {session['section']} from {original_timeslot} to {session['timeslot']}\n")
                 else:
                     if random.choice([True, False]):
+                        print(
+                            'Switching pattern for 3-credit class'
+                        )
                         # SWITCH PATTERN
                         # Determine the original and new pattern.
                         #continue
@@ -2014,12 +2049,17 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
                                     log_file.write(f"Removed extra session for {sessions[2]['section']}, in Individual: {individual_label}\n")
                                     del sessions[2]  # Removing the third session
                               
-                            if sessions[0]['minCredit'] == 4:
+                            if minCredit == 4:
                                 # Add an additional session for 4-credit classes, selected randomly from the full set
-                                additional_session = sessions[2]  # Third session for 4-credit class
-                                days, start_time = assign_timeslot("all") 
-                                additional_session['timeslot'] = f"{days} - {start_time}"
-                                log_file.write(f"Added additional session for 4-credit class {additional_session['section']} to {random_timeslot['days']} at {random_timeslot['start_time']}, in Individual: {individual_label}\n")
+                                index = next((i for i, session in enumerate(sessions) if session['section'].endswith('_one_credit')), None)
+                                if index is  None:
+                                    sessions.append(sessions[0].copy())
+                                    sessions[-1]['section']+='_one_credit'
+                                    log_file.write(f"Added additional session' )\n")
+                                    additional_session = sessions[-1]  # Third session for 4-credit class
+                                    days, start_time = assign_timeslot("all") 
+                                    additional_session['timeslot'] = f"{days} - {start_time}"
+                                    log_file.write(f"Added additional session for 4-credit class {additional_session['section']} to {days} at {start_time}, in Individual: {individual_label}\n")
                   
                         # When switching to MWF, distribute sessions across Monday, Wednesday, and Friday
                         elif new_pattern == "MWF":
@@ -2043,11 +2083,11 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
                                 #additional_session = sessions[2]  # Third session for 4-credit class
                                 days, start_time = assign_timeslot("all") 
                                 additional_session['timeslot'] = f"{days} - {start_time}"
-                                log_file.write(f"Added additional session for 4-credit class {additional_session['section']} to {random_timeslot['days']} at {random_timeslot['start_time']}, in Individual: {individual_label}\n")
+                                log_file.write(f"Added additional session for 4-credit class {additional_session['section']} to {days} at {start_time}, in Individual: {individual_label}\n")
                                                                                             
 
                         for session in sessions:
-                            log_file.write(f"Switched pattern for {session['section']} from {original_pattern} to {new_pattern}, new timeslot: {session['timeslot']}, in Individual: {individual_label}\n")
+                            log_file.write(f"Switched pattern for {session['section']}  to {new_pattern}, new timeslot: {session['timeslot']}, in Individual: {individual_label}\n")
 
                     else:
                         #change time only within a pattern
@@ -2056,8 +2096,9 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
                         days, start_time = assign_timeslot(class_pattern) 
                         #new_timeslot = random.choice([ts for ts in full_meeting_times if ts['days'] in sessions[0]['timeslot']])
                         for session in sessions:
-                            session['timeslot'] = f"{session['timeslot']['days']} - {start_time}"
-                            log_file.write(f"Changed time within the same pattern for {session['section']} from {original_timeslot} to {session['timeslot']}, in Individual: {individual_label}\n")
+                            day = session['timeslot'].split(' - ')[0]
+                            session['timeslot'] = f"{day} - {start_time}"
+                            log_file.write(f"Changed time within the same pattern for {session['section']} to {session['timeslot']}, in Individual: {individual_label}\n")
 
     return individual,
 
@@ -2228,6 +2269,13 @@ def run_genetic_algorithm(combined_expanded_schedule, report, ngen=50, pop_size=
     except Exception as e:
         # Handle the error gracefully and provide diagnostic information
         print(f"An error occurred during the genetic algorithm execution: {e}")
+        error_traceback = traceback.format_exc()
+
+        # Print or log the detailed error message with traceback
+        print(f"An error occurred during the genetic algorithm execution: {e}")
+        print("Detailed traceback:")
+        print(error_traceback)
+
         initial_sorted_population = sorted(
             population, 
             key=lambda ind: ind.fitness.values if ind.fitness.valid else float('inf')
@@ -2268,7 +2316,7 @@ def convert_schedule_to_csv(schedule):
         cw.writerow([entry['section'], entry['timeslot'], entry['faculty1'], entry['room'], entry['bldg']])  # Match with your data structure
     return si.getvalue()
 
-
+import traceback
 @app.route('/optimize', methods=['POST'])
 def optimize():
     try:
@@ -2407,6 +2455,13 @@ def optimize():
 
     except Exception as e:
             # Handle specific exceptions or general exceptions
+             # Capture the full traceback
+            error_traceback = traceback.format_exc()
+             # Print or log the detailed error message with traceback
+            print(f"An error occurred during the genetic algorithm execution: {e}")
+            print("Detailed traceback:")
+            print(error_traceback)
+            
             error_message = f"Error: {str(e)}"  # Format the message based on the exception type
             return jsonify({'message': error_message}), 400
 

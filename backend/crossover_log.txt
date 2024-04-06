@@ -6805,3 +6805,8 @@ Swapped other sections between 6dac1bd0-fe41-4286-9730-4462746190cd and 6dac1bd0
 Swapped MWF sections between cdf5b64c-a674-4f34-92a1-845c9c34c5b2 and cdf5b64c-a674-4f34-92a1-845c9c34c5b2 at point 5
 Swapped TuTh sections between cdf5b64c-a674-4f34-92a1-845c9c34c5b2 and cdf5b64c-a674-4f34-92a1-845c9c34c5b2 at point 6
 Swapped other sections between cdf5b64c-a674-4f34-92a1-845c9c34c5b2 and cdf5b64c-a674-4f34-92a1-845c9c34c5b2 at point 4
+Swapped TuTh sections between 84ee51ab-f515-4ef4-aae0-da67d37f7763 and 58dc686a-216f-44bd-8efd-b7214310e319 at point 9
+Swapped other sections between 84ee51ab-f515-4ef4-aae0-da67d37f7763 and 58dc686a-216f-44bd-8efd-b7214310e319 at point 3
+Swapped MWF sections between 0850658e-07e8-46e8-8685-e79d411e9402 and 4d8646a5-a9ab-441b-a356-989c8ef6afa3 at point 52
+Swapped TuTh sections between 0850658e-07e8-46e8-8685-e79d411e9402 and 4d8646a5-a9ab-441b-a356-989c8ef6afa3 at point 2
+Swapped other sections between 0850658e-07e8-46e8-8685-e79d411e9402 and 4d8646a5-a9ab-441b-a356-989c8ef6afa3 at point 3
