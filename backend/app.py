@@ -710,31 +710,40 @@ def read_csv_and_create_class_sections(csv_filename):
     return class_sections
 
 def group_three_credit_classes(three_credit_classes):
+    # Initialize a dictionary to hold the combined classes
     grouped = {}
-    for cls in three_credit_classes:
-        # Key by section and time (ignoring the day part)
-        key = (cls['section'], cls['timeslot'].split(' - ')[1])  # Splits "M - 10:10AM" into ["M", "10:10AM"] and uses "10:10AM"
-        if key not in grouped:
-            grouped[key] = {
-                'section': cls['section'],
-                'timeslot': '',  # We'll build this
-                'faculty1': cls['faculty1'],
-                'room': cls['room'],
-                'minCredit': cls['minCredit'],
-                'unwanted_timeslots': cls['unwanted_timeslots'],
-                'secCap': cls['secCap'],
-                'bldg': cls['bldg'],
-                'avoid_classes': cls['avoid_classes'],
-                'hold_value': cls['hold_value'],
-                'days': []  # Initialize an empty list to store days
-            }
-        # Append the day from the original timeslot
-        grouped[key]['days'].append(cls['timeslot'].split(' - ')[0])
 
-    # Now build the timeslot string and finalize the structure
-    for key, data in grouped.items():
-        days_sorted = sorted(data['days'])  # Sort to maintain consistent order: M, W, F or Tu, Th
-        data['timeslot'] = '{} - {}'.format(' '.join(days_sorted), key[1])  # Reconstruct the timeslot
+    for cls in three_credit_classes:
+        # Use section as the key for grouping
+        section = cls['section']
+        if section not in grouped:
+            # Initialize with the first class entry
+            grouped[section] = cls.copy()
+            grouped[section]['days'] = set()
+        # Add the day from the timeslot to the set of days
+        grouped[section]['days'].add(cls['timeslot'].split(' - ')[0])
+
+    # Define standard day patterns
+    mwf_pattern = {'M', 'W', 'F'}
+    tu_th_pattern = {'Tu', 'Th'}
+
+    # Combine the days into the standard MWF or TuTh pattern
+    for section, combined_cls in grouped.items():
+        days_set = combined_cls['days']
+        if days_set == mwf_pattern:
+            days_str = 'M W F'
+        elif days_set == tu_th_pattern:
+            days_str = 'Tu Th'
+        else:
+            # If it's a non-standard pattern, sort the days and join them
+            days_order = ['M', 'Tu', 'W', 'Th', 'F', 'Sa', 'Su']
+            days_str = ' '.join(sorted(days_set, key=lambda day: days_order.index(day)))
+
+        # Assume the time is the same for all days and take it from the first entry
+        time = combined_cls['timeslot'].split(' - ')[1]
+        combined_cls['timeslot'] = f"{days_str} - {time}"
+        # Remove the set of days as it's no longer needed
+        del combined_cls['days']
 
     return list(grouped.values())
 
@@ -757,6 +766,7 @@ def group_and_update_schedule(schedule_info_list):
             'slot_differences': schedule_info['slot_differences'],
             'calendar_events': schedule_info.get('calendar_events', [])
         })
+        
 
     return updated_schedules_list
 
