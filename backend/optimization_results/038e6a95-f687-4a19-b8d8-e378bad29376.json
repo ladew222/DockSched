@@ -1,0 +1,17 @@
+{
+    "unique_key": "038e6a95-f687-4a19-b8d8-e378bad29376",
+    "sorted_schedule": [
+        {
+            "schedule": [
+                {
+                    "section": "CSCI-160-001",
+                    "timeslot": "M W F - 10:10AM",
+                    "faculty1": "Weinberg, Eric G",
+                    "room": "228",
+                    "minCredit": "3",
+                    "unwanted_timeslots": [],
+                    "secCap": "16",
+                    "bldg": "RCE",
+                    "avoid_classes": [],
+                    "hold_value": "0",
+                    "days": 

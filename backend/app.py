@@ -142,7 +142,7 @@ def create_individual(failed_sections, combined_expanded_schedule, mutation_rate
                 
                 mutation_condition = course_id in [item[0] for item in failed_sections] or random.random() < mutation_rate
 
-                if mutation_condition:
+                if mutation_condition and 1==2:
                     # Determine the pattern based on the total credits and session information
                     if len(sessions) >= 3 and int(sessions[0]['minCredit'])>= 3:
                         #pattern = determine_original_pattern(sessions, 4)
@@ -709,39 +709,57 @@ def read_csv_and_create_class_sections(csv_filename):
 
     return class_sections
 
+def group_three_credit_classes(three_credit_classes):
+    grouped = {}
+    for cls in three_credit_classes:
+        # Key by section and time (ignoring the day part)
+        key = (cls['section'], cls['timeslot'].split(' - ')[1])  # Splits "M - 10:10AM" into ["M", "10:10AM"] and uses "10:10AM"
+        if key not in grouped:
+            grouped[key] = {
+                'section': cls['section'],
+                'timeslot': '',  # We'll build this
+                'faculty1': cls['faculty1'],
+                'room': cls['room'],
+                'minCredit': cls['minCredit'],
+                'unwanted_timeslots': cls['unwanted_timeslots'],
+                'secCap': cls['secCap'],
+                'bldg': cls['bldg'],
+                'avoid_classes': cls['avoid_classes'],
+                'hold_value': cls['hold_value'],
+                'days': []  # Initialize an empty list to store days
+            }
+        # Append the day from the original timeslot
+        grouped[key]['days'].append(cls['timeslot'].split(' - ')[0])
 
+    # Now build the timeslot string and finalize the structure
+    for key, data in grouped.items():
+        days_sorted = sorted(data['days'])  # Sort to maintain consistent order: M, W, F or Tu, Th
+        data['timeslot'] = '{} - {}'.format(' '.join(days_sorted), key[1])  # Reconstruct the timeslot
+
+    return list(grouped.values())
+
+# Example usage in your existing function
 def group_and_update_schedule(schedule_info_list):
     updated_schedules_list = []
 
     for schedule_info in schedule_info_list:
-        # Extract the individual schedule from the current schedule_info
         individual_schedule = schedule_info['schedule']
-
-        # Divide each schedule into groups of 3-credit and remaining classes
-        #problem here
-        three_credit_classes, remaining_classes = divide_schedules_by_credit(individual_schedule)
-
-        # Group 3-credit classes based on common time patterns
-        grouped_three_credit_classes = []
-        for cls in three_credit_classes:
-            # Since the cls dictionary already has the required keys, we can append it directly
-            grouped_three_credit_classes.append(cls)
-
-        # Directly append remaining classes, including 1-credit classes, to the schedule
+        three_credit_classes, remaining_classes = split_class_sections(individual_schedule)
+        grouped_three_credit_classes = group_three_credit_classes(three_credit_classes)
         updated_schedule = grouped_three_credit_classes + remaining_classes
 
-        # Update the schedule in the current schedule_info dictionary
         updated_schedules_list.append({
             'schedule': updated_schedule,
             'score': schedule_info['score'],
-            'label': schedule_info['label'] if 'label' in schedule_info else 'na',
-            'student_conflicts': schedule_info['student_conflicts'],  # include details if present
+            'label': schedule_info.get('label', 'na'),
+            'student_conflicts': schedule_info['student_conflicts'],
             'algorithm': schedule_info['algorithm'],
             'slot_differences': schedule_info['slot_differences'],
-            'calendar_events': schedule_info.get('calendar_events', [])  # include calendar_events if present
+            'calendar_events': schedule_info.get('calendar_events', [])
         })
 
     return updated_schedules_list
+
 
 
 
@@ -1342,6 +1360,8 @@ def combine_and_expand_schedule(three_credit_results, remaining_class_results, m
 
     # Expand and add three-credit class schedules
     for result in three_credit_results['scheduled_sections']:
+        #print(f"Processing section: {result['section']}, Days: {optimized_days}, Time: {optimized_time}")
+
         cls = next((c for c in class_sections if c.section== result['section']), None)
         if cls:
             # Extract days from the optimized timeslot
@@ -1812,7 +1832,7 @@ def evaluateSchedule(individual):
     pattern_violation_penalty = 300
     mutual_exclusion_penalty = 2
     same_day_penalty = 300
-    distribution_penalty_weight = 100  # Adjust based on desired impact
+    distribution_penalty_weight = 150  # Adjust based on desired impact
 
     # Initialize scoring variables
     total_score = 0
@@ -1946,21 +1966,39 @@ def evaluateSchedule(individual):
                     detailed_scores[section].setdefault('same_day_violation', 0)
                     detailed_scores[section]['same_day_violation'] += same_day_violation
 
-      # Calculate distribution penalty
+    # Distribution penalty assessment
     for course, timeslots in class_timings.items():
-        # Example: Count the number of sessions per day for the course
-        day_counts = Counter([ts.split(' - ')[0] for ts in timeslots])
-        
-        # Calculate variance or another measure of uneven distribution
-        day_variance = np.var(list(day_counts.values()))  # Using numpy for variance calculation
+        # Count the occurrences of classes on TuTh and MWF
+        tu_th_count = sum(1 for ts in timeslots if 'Tu' in ts or 'Th' in ts)
+        mwf_count = sum(1 for ts in timeslots if 'M' in ts and 'W' in ts and 'F' in ts)
 
-        # Apply penalty based on variance - higher variance indicates more uneven distribution
-        distribution_penalty = day_variance * distribution_penalty_weight
+        # Calculate the difference between the counts to assess distribution
+        distribution_difference = abs(tu_th_count - mwf_count)
+
+        # Apply a penalty based on the difference - higher difference indicates more uneven distribution
+        distribution_penalty = distribution_difference * distribution_penalty_weight
         total_distribution_penalty += distribution_penalty
 
-        # Optionally, log distribution penalty details for each course
+        # Log distribution penalty details for each course
         detailed_scores[course]['distribution_penalty'] = distribution_penalty
 
+      # Initialize counters for MWF and TuTh classes
+    mwf_count = 0
+    tuth_count = 0
+
+    # Loop through each class in the individual/schedule
+    for course, timeslots in class_timings.items():
+        # Count the occurrences of MWF and TuTh
+        for ts in timeslots:
+            if 'M' in ts and 'W' in ts and 'F' in ts:
+                mwf_count += 1
+            elif 'Tu' in ts and 'Th' in ts:
+                tuth_count += 1
+    
+    # Print the distribution count
+    print(f"MWF Count: {mwf_count}")
+    print(f"TuTh Count: {tuth_count}")
+    
     # Include distribution penalty in the total score
     total_score += total_distribution_penalty
     
@@ -1993,23 +2031,31 @@ def validate_csv_for_class_section(csv_data):
 
     return "CSV data is valid for ClassSection.", True
 
+def assess_distribution(individual):
+    mwf_count = sum(1 for cls in individual if 'M' in cls['timeslot'] and 'W' in cls['timeslot'] and 'F' in cls['timeslot'])
+    tuth_count = sum(1 for cls in individual if 'Tu' in cls['timeslot'] and 'Th' in cls['timeslot'])
+    return mwf_count, tuth_count
+
 
 
 import random
 def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
     full_meeting_times = create_full_meeting_times()
     class_groups = {}
+    
+    mwf_count, tuth_count = assess_distribution(individual)
 
     with open(log_filename, "a") as log_file:
         individual_label = individual.label if hasattr(individual, 'label') else 'Unknown'
         log_file.write(f"\n--- Mutating Individual: {individual_label} ---\n")
+        log_file.write(f"Current distribution - MWF count: {mwf_count}, TuTh count: {tuth_count}\n")
         # Group sessions by course identifier.
         for session in individual:
             course_identifier = session['section'].split('-')[0] + '-' + session['section'].split('-')[1]
             class_groups.setdefault(course_identifier, []).append(session)
 
         for course_id, sessions in class_groups.items():
-            if random.random() < mutpb:
+            if random.random() < mutpb and 1 == 0:
                 log_file.write(f"\n--- Mutating group: {course_id} in Individual: {individual_label} ---\n")
                 minCredit = int(sessions[0]['minCredit'])
 
@@ -2030,7 +2076,7 @@ def custom_mutate(individual, mutpb, log_filename="mutation_log.txt"):
                         #continue
                         class_pattern = determine_original_pattern(sessions)
                         new_pattern = "TuTh" if class_pattern == "MWF" else "MWF"
-                        
+                        new_pattern = "TuTh" 
     
                         # When switching to TuTh, assign one session to Tuesday and another to Thursday
                         if new_pattern == "TuTh":
@@ -2152,6 +2198,7 @@ def custom_crossover(ind1, ind2, log_filename="crossover_log.txt"):
     label2 = ind2.label if hasattr(ind2, 'label') else 'Unknown2'
 
     full_meeting_times = create_full_meeting_times()
+    return ind1, ind2
 
     # Group classes by pattern
     mwf1, tuth1, other1 = group_by_pattern(ind1)
@@ -2405,7 +2452,7 @@ def optimize():
          # Process each top GA schedule to add to all_schedules
         for ga_schedule in top_unique_schedules:
             # Split schedules by credit
-            three_credit_classes, remaining_classes = divide_schedules_by_credit(ga_schedule[0])
+            three_credit_classes, remaining_classes = split_class_sections(ga_schedule[0])
 
             if not is_valid_individual(ga_schedule[0]) or 1==1 :
                 # Prepare the three-credit class results in the required format for processing calendar events
@@ -2477,51 +2524,6 @@ def write_results_to_json(key, results):
     with open(filepath, 'w') as json_file:
         json.dump(results, json_file, indent=4)
 
-
-def divide_schedules_by_credit(schedule, credit_threshold=3):
-    three_credit_classes = []
-    remaining_classes = []
-    section_groupings = {}
-
-    for class_section in schedule:
-        if class_section['section'].endswith('_one_credit'):
-             remaining_classes.append(class_section)
-             continue
-        base_section_name = class_section['section'].split('_')[0]
-        section_groupings.setdefault(base_section_name, []).append(class_section)
-
-    for base_section_name, sections in section_groupings.items():
-        if any(int(cls['minCredit']) >= credit_threshold for cls in sections):
-            mwf_time, tuth_time = get_most_common_start_times(sections)
-            if determine_class_pattern_from_two_sessions(sections) == 'MWF':
-                mwf_sections = [cls for cls in sections if 'M' in cls['timeslot'] or 'W' in cls['timeslot'] or 'F' in cls['timeslot']]
-                if mwf_sections:
-                    three_credit_classes.append({
-                        'section': base_section_name,
-                        'timeslot': 'M W F - ' + mwf_time,
-                        'minCredit': mwf_sections[0]['minCredit'],
-                        'faculty1': mwf_sections[0]['faculty1'],
-                        'room': mwf_sections[0]['room'],
-                        'bldg': mwf_sections[0]['bldg'],
-                        'secCap': mwf_sections[0]['secCap']
-                    })
-            if tuth_time:
-                if determine_class_pattern_from_two_sessions(sections) == 'TuTh':
-                    tuth_sections = [cls for cls in sections if 'Tu' in cls['timeslot'] or 'Th' in cls['timeslot']]
-                    if tuth_sections:
-                        three_credit_classes.append({
-                            'section': base_section_name,
-                            'timeslot': 'Tu Th - ' + tuth_time,
-                            'minCredit': tuth_sections[0]['minCredit'],
-                            'faculty1': mwf_sections[0]['faculty1'],
-                            'room': mwf_sections[0]['room'],
-                            'bldg': mwf_sections[0]['bldg'],
-                            'secCap': mwf_sections[0]['secCap']
-                        })
-        else:
-            remaining_classes.extend(sections)
-
-    return three_credit_classes, remaining_classes
 
 
 def process_uploaded_data(uploaded_file_data):
