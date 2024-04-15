@@ -713,39 +713,43 @@ def group_three_credit_classes(three_credit_classes):
     # Initialize a dictionary to hold the combined classes
     grouped = {}
 
-    for cls in three_credit_classes:
-        # Use section as the key for grouping
-        section = cls['section']
-        if section not in grouped:
-            # Initialize with the first class entry
-            grouped[section] = cls.copy()
-            grouped[section]['days'] = set()
-        # Add the day from the timeslot to the set of days
-        grouped[section]['days'].add(cls['timeslot'].split(' - ')[0])
-
     # Define standard day patterns
     mwf_pattern = {'M', 'W', 'F'}
     tu_th_pattern = {'Tu', 'Th'}
 
-    # Combine the days into the standard MWF or TuTh pattern
-    for section, combined_cls in grouped.items():
-        days_set = combined_cls['days']
-        if days_set == mwf_pattern:
+    for cls in three_credit_classes:
+        # Extract section, day, and time from each class entry
+        section = cls['section']
+        days, time = cls['timeslot'].split(' - ')
+        days_set = set(days.split())
+
+        if section not in grouped:
+            # Initialize with the first class entry, assuming consistency in other details
+            grouped[section] = cls.copy()
+            grouped[section]['days'] = days_set  # Set of days for handling pattern matching
+        else:
+            # Update the days set
+            grouped[section]['days'].update(days_set)
+
+    # Process the grouped entries to format the timeslot string according to patterns
+    for section, data in grouped.items():
+        if data['days'] == mwf_pattern:
             days_str = 'M W F'
-        elif days_set == tu_th_pattern:
+        elif data['days'] == tu_th_pattern:
             days_str = 'Tu Th'
         else:
             # If it's a non-standard pattern, sort the days and join them
             days_order = ['M', 'Tu', 'W', 'Th', 'F', 'Sa', 'Su']
-            days_str = ' '.join(sorted(days_set, key=lambda day: days_order.index(day)))
+            days_str = ' '.join(sorted(data['days'], key=lambda day: days_order.index(day)))
 
-        # Assume the time is the same for all days and take it from the first entry
-        time = combined_cls['timeslot'].split(' - ')[1]
-        combined_cls['timeslot'] = f"{days_str} - {time}"
-        # Remove the set of days as it's no longer needed
-        del combined_cls['days']
+        # Update the timeslot with the correct order of days
+        data['timeslot'] = f"{days_str} - {data['time']}"
+        # Remove the 'days' and 'time' keys as they are no longer needed
+        del data['days']
+        del data['time']
 
     return list(grouped.values())
+
 
 # Example usage in your existing function
 def group_and_update_schedule(schedule_info_list):
@@ -753,7 +757,7 @@ def group_and_update_schedule(schedule_info_list):
 
     for schedule_info in schedule_info_list:
         individual_schedule = schedule_info['schedule']
-        three_credit_classes, remaining_classes = split_class_sections(individual_schedule)
+        three_credit_classes, remaining_classes = split_full_class_sections(individual_schedule)
         grouped_three_credit_classes = group_three_credit_classes(three_credit_classes)
         updated_schedule = grouped_three_credit_classes + remaining_classes
 
@@ -1715,6 +1719,72 @@ def follows_pattern(timeslot, pattern):
         return all(day in days for day in ['Tu', 'Th'])
     return False
 
+
+def split_full_class_sections(class_sections):
+    # Helper function to format the timeslot string
+    def format_timeslot(days, time):
+        mwf = {'M', 'W', 'F'}
+        tu_th = {'Tu', 'Th'}
+        days_set = set(days)
+
+        if days_set == mwf:
+            return 'M W F - ' + time
+        elif days_set == tu_th:
+            return 'Tu Th - ' + time
+        else:
+            # If it doesn't match any known pattern, join them sorted
+            sorted_days = sorted(days, key=["M", "Tu", "W", "Th", "F", "Sa", "Su"].index)
+            return ' '.join(sorted_days) + ' - ' + time
+
+    # Initialize containers for the two groups
+    standard_schedule_classes = []  # M W F or Tu Th classes of 3 or 4 credits
+    non_standard_schedule_classes = []  # _one_credit classes and remaining credit from the 4 credit class
+
+    # A temporary structure to hold combined class data
+    temp_combined_classes = {}
+
+    for class_section in class_sections:
+        section = class_section['section']
+        day, time = class_section['timeslot'].split(' - ')
+
+        # Initialize the structure for combined class data if not present
+        if section not in temp_combined_classes:
+            temp_combined_classes[section] = {
+                'section': section,
+                'timeslot': set(),
+                'time': time,
+                'faculty1': class_section['faculty1'],
+                'room': class_section['room'],
+                'minCredit': class_section['minCredit'],
+                # ... include other fields as necessary
+            }
+        temp_combined_classes[section]['timeslot'].add(day)
+
+    # Process combined class data to split into the two groups
+    for combined in temp_combined_classes.values():
+        days = combined['timeslot']
+        timeslot_str = format_timeslot(days, combined['time'])
+        if int(combined['minCredit']) in [3, 4] and (set(days) <= {'M', 'Tu', 'W', 'Th', 'F'}):
+            standard_class = combined.copy()
+            standard_class['timeslot'] = timeslot_str
+            if int(combined['minCredit']) == 4:
+                # Adjust the credit for 4 credit classes
+                standard_class['minCredit'] = '3'
+                standard_schedule_classes.append(standard_class)
+                # Create a one-credit class entry
+                one_credit_class = combined.copy()
+                one_credit_class['minCredit'] = '1'
+                one_credit_class['section'] += "_one_credit"
+                one_credit_class['timeslot'] = timeslot_str
+                non_standard_schedule_classes.append(one_credit_class)
+            else:
+                standard_schedule_classes.append(standard_class)
+        else:
+            non_standard_class = combined.copy()
+            non_standard_class['timeslot'] = timeslot_str
+            non_standard_schedule_classes.append(non_standard_class)
+
+    return standard_schedule_classes, non_standard_schedule_classes
 
 
 
