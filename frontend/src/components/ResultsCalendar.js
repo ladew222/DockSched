@@ -19,13 +19,26 @@ const stringToColor = (str) => {
 };
 
 
+const formatDateToICS = (dateInput) => {
+  let date;
 
+  // Check if the input is a string and convert it to a Date object
+  if (typeof dateInput === 'string') {
+    date = new Date(dateInput);
+    // Check if the date is valid
+    if (isNaN(date.getTime())) {
+      throw new TypeError("Invalid date string");
+    }
+  } else if (dateInput instanceof Date) {
+    date = dateInput;
+  } else {
+    throw new TypeError("Input must be a Date object or a valid date string");
+  }
 
-
-const formatDateToICS = (date) => {
   // Format the JavaScript date object into a date-time string according to the ICS standard
   return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 };
+
 
 const generateICS = (events) => {
   let icsFileContent = [
@@ -41,7 +54,7 @@ const generateICS = (events) => {
       `UID:${event.id || event.title}`,
       `DTSTART:${formatDateToICS(event.start)}`,
       `DTEND:${formatDateToICS(event.end)}`,
-      `SUMMARY:${event.title || ''}`,
+      `SUMMARY:${event.description || ''}`,
       `DESCRIPTION:${event.description || ''}`,
       `LOCATION:${event.location || ''}`,
       'END:VEVENT'
@@ -77,10 +90,10 @@ const MyCalendar = ({ events }) => {
   const handleDownloadICS = () => {
     try {
       const calendarEvents = events.map(event => ({
-        id: event.id || event.title, // Ensure each event has a unique identifier
+        id: event.id || event.section_name, // Ensure each event has a unique identifier
         start: event.start,
         end: event.end,
-        title: event.title || 'No Title',
+        title: event.section_name || 'No Title',
         description: event.description || `${event.section_name} ${event.faculty1}`, // Add a description if available
         location: event.location || `${event.bldg} ${event.room}`, // Set the location of the event
       }));

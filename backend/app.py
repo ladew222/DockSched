@@ -1753,6 +1753,7 @@ def split_full_class_sections(class_sections):
                 'section': section,
                 'timeslot': set(),
                 'time': time,
+                'bldg': class_section['bldg'],
                 'faculty1': class_section['faculty1'],
                 'room': class_section['room'],
                 'minCredit': class_section['minCredit'],
@@ -2278,7 +2279,7 @@ def custom_crossover(ind1, ind2, log_filename="crossover_log.txt"):
     label2 = ind2.label if hasattr(ind2, 'label') else 'Unknown2'
 
     full_meeting_times = create_full_meeting_times()
-    return ind1, ind2
+    #return ind1, ind2
 
     # Group classes by pattern
     mwf1, tuth1, other1 = group_by_pattern(ind1)
